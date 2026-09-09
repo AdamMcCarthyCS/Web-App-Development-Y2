@@ -2,6 +2,7 @@ import Hapi from "@hapi/hapi";
 import path from "path";
 
 import { fileURLToPath } from "url";
+import { webRoutes } from "./web-routes.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -12,21 +13,7 @@ async function init() {
           host: "localhost",
      });
 
-     server.route({
-        method: "GET",
-        path: "/",
-        handler: function (request, h) {
-            return "Hello World!";
-        }
-     })
-
-     server.route({
-        method: "GET",
-        path: "/test",
-        handler: function (request, h) {
-            return "Testing a different route...";
-        }
-     });
+     server.route(webRoutes);
 
      await server.start();
      console.log("Server running on %s", server.info.uri);
