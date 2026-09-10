@@ -1,6 +1,6 @@
 import Hapi from "@hapi/hapi";
-import Vision from "@hapi/vision"
-import Handlebars from "handlebars"
+import Vision from "@hapi/vision";
+import Handlebars from "handlebars";
 import path from "path";
 import { fileURLToPath } from "url";
 import { webRoutes } from "./web-routes.js";
@@ -23,7 +23,7 @@ async function init() {
           layoutPath: "./views/layouts",
           partialsPath: "./views/partials",
           layout: true,
-          isCached: false
+          isCached: false,
      });
      server.route(webRoutes);
 
