@@ -1,0 +1,23 @@
+import { db } from "../models/db.js";
+
+export const dashboardController = {
+     index: {
+          handler: async function (request, h) {
+               const playlists = await db.playlistStore.getAllPlaylists();
+               const viewData = {
+                    title: "Playtime Dashboard",
+                    playlists: playlists,
+               };
+               return h.view("dashboard", viewData);
+          },
+     },
+     addPlaylist: {
+          handler: async function (request, h) {
+               const newPlaylist = {
+                    title: request.payload.title
+               };
+               await db.playlistStore.addPlaylist(newPlaylist);
+               return h.redirect("/dashboard")
+          }
+     }
+};
