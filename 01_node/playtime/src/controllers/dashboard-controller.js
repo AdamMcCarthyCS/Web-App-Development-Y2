@@ -11,4 +11,13 @@ export const dashboardController = {
                return h.view("dashboard", viewData);
           },
      },
+     addPlaylist: {
+          handler: async function (request, h) {
+               const newPlaylist = {
+                    title: request.payload.title
+               };
+               await db.playlistStore.addPlaylist(newPlaylist);
+               return h.redirect("/dashboard")
+          }
+     }
 };
