@@ -3,7 +3,7 @@ import { db } from "../models/db.js"
 export const playlistController = {
     index: {
         handler: async function(request, h) {
-            const playlist = await db.playlist.getPlaylistById(request.params.id);
+            const playlist = await db.playlistStore.getPlaylistById(request.params.id);
             const viewData = {
                 title: "Playlist",
                 playlist: playlist,
@@ -14,7 +14,7 @@ export const playlistController = {
 
     addTrack: {
         handler: async function(request, h) {
-            const playlist = await db.playlist.getPlaylistById(request.params.id);
+            const playlist = await db.playlistStore.getPlaylistById(request.params.id);
             const newTrack = {
                 title: request.payload.title,
                 artist: request.payload.artist,

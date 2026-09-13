@@ -1,4 +1,6 @@
+// eslint-disable-next-line import/no-unresolved
 import { v4 } from "uuid";
+import { trackMemStore } from "./track-mem-store.js"
 
 let playlists = [];
 
@@ -8,13 +10,15 @@ export const playlistMemStore = {
      },
 
      async addPlaylist(playlist) {
-          playlist.id = v4();
+          playlist._id = v4();
           playlists.push(playlist);
           return playlists;
      },
 
      async getPlaylistById(id) {
-          return playlists.find((playlist) => playlist._id === id);
+          const list = playlists.find((playlist) => playlist._id === id);
+          list.tracks = await trackMemStore.getTracksByPlaylistId(list._id)
+          return list
      },
 
      async deletePlaylistById(id) {
