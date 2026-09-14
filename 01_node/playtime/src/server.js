@@ -6,11 +6,12 @@ import path from "path";
 import { fileURLToPath } from "url";
 
 import Cookie from "@hapi/cookie"
+import dotenv from "dotenv"
 import { webRoutes } from "./web-routes.js";
 import { db } from "./models/db.js"
 import { accountsController } from "./controllers/accounts-controller.js"
 
-import "dotenv/config"
+dotenv.config()
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
