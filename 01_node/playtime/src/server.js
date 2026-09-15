@@ -1,29 +1,37 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import Hapi from "@hapi/hapi";
 import Vision from "@hapi/vision";
 import Handlebars from "handlebars";
 import path from "path";
 import { fileURLToPath } from "url";
-// eslint-disable-next-line import/no-extraneous-dependencies
+
 import Cookie from "@hapi/cookie"
+import dotenv from "dotenv"
 import { webRoutes } from "./web-routes.js";
 import { db } from "./models/db.js"
 import { accountsController } from "./controllers/accounts-controller.js"
+
+const result = dotenv.config();
+if (result.error) {
+     console.log(result.error.message);
+     process.exit(1)
+}
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 async function init() {
      const server = Hapi.server({
-          port: 3000,
-          host: "localhost",
+          port: process.env.PORT,
+          host: process.env.HOST,
      });
      await server.register(Vision);
      await server.register(Cookie);
 
      server.auth.strategy("session", "cookie", {
      cookie: {
-          name: "playtime",
-          password: "secretpasswordnotrevealedtoanyone",
+          name: process.env.NAME,
+          password: process.env.PASSWORD,
           isSecure: false,
      },
      redirectTo: "/",

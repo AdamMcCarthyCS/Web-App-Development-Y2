@@ -24,4 +24,12 @@ export const playlistController = {
             return h.redirect(`/playlist/${playlist._id}`);
        }
     },
+
+    deleteTrack: {
+        handler: async function(request, h) {
+            const playlist = await db.playlistStore.getPlaylistById(request.params.playlistId);
+            await db.trackStore.deleteTrack(request.params.trackId)
+            return h.redirect(`/playlist/${playlist._id}`);
+        }
+    }
 };
