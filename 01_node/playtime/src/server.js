@@ -1,4 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import Hapi from "@hapi/hapi";
 import Vision from "@hapi/vision";
 import Handlebars from "handlebars";

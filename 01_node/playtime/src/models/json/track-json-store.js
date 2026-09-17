@@ -1,4 +1,3 @@
-/* eslint-disable import/no-unresolved */
 import { v4 } from "uuid";
 import { db } from "./store-utils.js";
 
