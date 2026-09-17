@@ -18,7 +18,7 @@ export const trackJsonStore = {
 
     async getTracksByPlaylistId(id) {
         await db.read();
-        return db.data.tracks.find((track) => track.playlistid === id);
+        return db.data.tracks.filter((track) => track.playlistId === id);
     },
 
     async getTrackById(id) {
