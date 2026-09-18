@@ -1,0 +1,91 @@
+{
+  "users": [
+    {
+      "firstName": "Adam",
+      "lastName": "McCarthy",
+      "email": "adamssignupemail@gmail.com",
+      "password": "password",
+      "_id": "23b4b928-cd46-4b5a-b2c1-599b87d9dc27"
+    },
+    {
+      "firstName": "Test",
+      "lastName": "User",
+      "email": "test@gmail.com",
+      "password": "test",
+      "_id": "e0a0b09e-91e7-41d1-ad69-030d30d8bb0c"
+    }
+  ],
+  "playlists": [
+    {
+      "userid": "23b4b928-cd46-4b5a-b2c1-599b87d9dc27",
+      "title": "Rock",
+      "_id": "edec33ed-b3c3-4f22-bc46-e77a83bef69d"
+    },
+    {
+      "userid": "23b4b928-cd46-4b5a-b2c1-599b87d9dc27",
+      "title": "Indie",
+      "_id": "acb52cac-87ce-43b7-b677-4d548d824abf"
+    },
+    {
+      "userid": "23b4b928-cd46-4b5a-b2c1-599b87d9dc27",
+      "title": "Pop",
+      "_id": "8313e10f-eac1-461f-ad30-90e13c074982"
+    },
+    {
+      "userid": "e0a0b09e-91e7-41d1-ad69-030d30d8bb0c",
+      "title": "Test",
+      "_id": "b215562d-f61c-4d42-8e90-031a7498b3c0"
+    }
+  ],
+  "tracks": [
+    {
+      "title": "Everlong",
+      "artist": "Foo Fighters",
+      "duration": 4.11,
+      "_id": "bf3fc2be-cca8-4609-982a-a393b3be1efe",
+      "playlistId": "edec33ed-b3c3-4f22-bc46-e77a83bef69d"
+    },
+    {
+      "title": "Mr. Brightside",
+      "artist": "The Killers",
+      "duration": 3.42,
+      "_id": "3edd6752-107c-4a5b-9b3d-48aca76fc17e",
+      "playlistId": "edec33ed-b3c3-4f22-bc46-e77a83bef69d"
+    },
+    {
+      "title": "Do I wanna know?",
+      "artist": "The Artic Monkeys",
+      "duration": 4.32,
+      "_id": "439ed1c8-884b-4f5d-bcaa-f8d424f32631",
+      "playlistId": "acb52cac-87ce-43b7-b677-4d548d824abf"
+    },
+    {
+      "title": "Take me out",
+      "artist": "Franz Ferdinand",
+      "duration": 3.57,
+      "_id": "1909a2aa-2e15-46e9-9fe5-6884b39e7f46",
+      "playlistId": "acb52cac-87ce-43b7-b677-4d548d824abf"
+    },
+    {
+      "title": "Blinding Lights",
+      "artist": "The Weekend",
+      "duration": 3.21,
+      "_id": "26b76963-8fa2-4e16-8782-3cc007a1b549",
+      "playlistId": "8313e10f-eac1-461f-ad30-90e13c074982"
+    },
+    {
+      "title": "Levitating",
+      "artist": "Dua Lipa",
+      "duration": 3.23,
+      "_id": "71557f73-d466-4a59-aa60-be37350052db",
+      "playlistId": "8313e10f-eac1-461f-ad30-90e13c074982"
+    },
+    {
+      "title": "test song",
+      "artist": "test band",
+      "duration": 2.4,
+      "_id": "277b9da9-db77-4475-9a59-d30fe957e1b9",
+      "playlistId": "b215562d-f61c-4d42-8e90-031a7498b3c0"
+    }
+  ]
+}
