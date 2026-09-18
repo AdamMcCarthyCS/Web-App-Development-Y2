@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/no-unresolved
 import { v4 } from "uuid";
 
 let tracks = [];

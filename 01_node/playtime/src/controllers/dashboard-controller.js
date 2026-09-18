@@ -1,4 +1,5 @@
 import { db } from "../models/db.js";
+import { PlaylistSpec } from "../models/joi-schemas.js"
 
 export const dashboardController = {
      index: {
@@ -14,6 +15,12 @@ export const dashboardController = {
           },
      },
      addPlaylist: {
+          validate: {
+               payload: PlaylistSpec,
+               failAction: function (request, h, error) {
+                    return h.view("dashboard", { title: "Error adding playlist", errors: error.details }).takeover().code(400)
+               }
+          },
           handler: async function (request, h) {
                const loggedInUser = request.auth.credentials;
                const newPlaylist = {
