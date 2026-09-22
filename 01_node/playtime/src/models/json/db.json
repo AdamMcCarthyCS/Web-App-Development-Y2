@@ -27,6 +27,48 @@
       "email": "maggie@simpson.com",
       "password": "secret",
       "_id": "3b9caf4e-c4df-474d-b191-bb3ec8b5fdd4"
+    },
+    {
+      "firstName": "Maggie",
+      "lastName": "Simpson",
+      "email": "maggie@simpson.com",
+      "password": "secret",
+      "_id": "150b54b1-937e-4499-ba6d-770efa7300eb"
+    },
+    {
+      "firstName": "Maggie",
+      "lastName": "Simpson",
+      "email": "maggie@simpson.com",
+      "password": "secret",
+      "_id": "b85493ca-327a-4e2e-9c66-aee2c5c72812"
+    },
+    {
+      "firstName": "Maggie",
+      "lastName": "Simpson",
+      "email": "maggie@simpson.com",
+      "password": "secret",
+      "_id": "03d5746d-d443-48e7-8b89-01cf9c37acde"
+    },
+    {
+      "firstName": "Maggie",
+      "lastName": "Simpson",
+      "email": "maggie@simpson.com",
+      "password": "secret",
+      "_id": "0f4a4a20-a05c-47f3-8a8f-8904a96fc2d4"
+    },
+    {
+      "firstName": "Maggie",
+      "lastName": "Simpson",
+      "email": "maggie@simpson.com",
+      "password": "secret",
+      "_id": "68d69627-dd78-4177-9c91-6b72a526750e"
+    },
+    {
+      "firstName": "Maggie",
+      "lastName": "Simpson",
+      "email": "maggie@simpson.com",
+      "password": "secret",
+      "_id": "c990a0ae-3473-4bef-9c09-1739dcb1a649"
     }
   ],
   "playlists": [
