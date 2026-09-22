@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+       <meta charset="utf-8">
+       <title>Exercise Three</title>
+
+</head>
+
+<body>
+       <h1>Exercise Three</h1>
+       <h3>See the console for output</h3>
+
+
+       <script>
+              const students = [
+                     {name: "John", age: 20, grade: "B"},
+                     {name: "Sarah", age: 19, grade: "A"},
+                     {name: "Jill", age: 20, grade: "F"},
+                     {name: "Alex", age: 21, grade: "A"},
+                     {name: "Sandra", age: 20, grade: "C"},
+              ]
+
+              console.log("Arrays & Objects - Student Database")
+              console.log("Number of Students: ", students.length)
+              students.push({name: "Bobby", age: 18, grade: "B"})
+              console.log("Number of Students: ", students.length)
+              students.forEach(student => console.log(student.name))
+              
+
+       </script>
+
+</body>
+
+</html>
