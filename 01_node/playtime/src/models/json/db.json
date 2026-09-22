@@ -1,0 +1,48 @@
+{
+  "users": [
+    {
+      "firstName": "Adam",
+      "lastName": "McCarthy",
+      "email": "adamssignupemail@gmail.com",
+      "password": "a",
+      "_id": "67d1071a-95d7-437e-bb28-315bccabc6d7"
+    },
+    {
+      "firstName": "Maggie",
+      "lastName": "Simpson",
+      "email": "maggie@simpson.com",
+      "password": "secret",
+      "_id": "adc2cfa6-1047-42d1-ab64-35de2c97f00e"
+    },
+    {
+      "firstName": "Maggie",
+      "lastName": "Simpson",
+      "email": "maggie@simpson.com",
+      "password": "secret",
+      "_id": "fb4d770b-a922-4c15-82e4-72a83cdc7c36"
+    },
+    {
+      "firstName": "Maggie",
+      "lastName": "Simpson",
+      "email": "maggie@simpson.com",
+      "password": "secret",
+      "_id": "3b9caf4e-c4df-474d-b191-bb3ec8b5fdd4"
+    }
+  ],
+  "playlists": [
+    {
+      "userid": "67d1071a-95d7-437e-bb28-315bccabc6d7",
+      "title": "Temp",
+      "_id": "8e8bf24a-76e9-4701-9985-f8f0d10aaed3"
+    }
+  ],
+  "tracks": [
+    {
+      "title": "temp",
+      "artist": "tempArtist",
+      "duration": 0,
+      "_id": "1ca3c0e7-e255-4464-9e0f-4f18bbc67d05",
+      "playlistId": "8e8bf24a-76e9-4701-9985-f8f0d10aaed3"
+    }
+  ]
+}
