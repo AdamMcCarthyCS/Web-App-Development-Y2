@@ -24,13 +24,15 @@ export const userJsonStore = {
 
   async getUserByEmail(email) {
     await db.read();
-    return db.data.users.find((user) => user.email === email);
+    let u = db.data.users.find((user) => user.email === email);
+    if (u === undefined) u = null;
+    return u; 
   },
 
   async deleteUserById(id) {
     await db.read();
     const index = db.data.users.findIndex((user) => user._id === id);
-    db.data.users.splice(index, 1);
+    if (index !== -1) db.data.users.splice(index, 1);
     await db.write();
   },
 
