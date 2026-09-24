@@ -7,6 +7,10 @@ suite("User API tests", () => {
     setup(async () => {
         db.init();
         await db.userStore.deleteAll();
+        for (let i = 0; i < testUsers.length; i += 1) {
+            // eslint-disable-next-line no-await-in-loop
+            testUsers[i] = await db.userStore.addUser(testUsers[i]);
+        }
     });
     
     test("create a user", async () => {
@@ -14,11 +18,7 @@ suite("User API tests", () => {
         assert.equal(newUser, maggie);
     });
 
-    test("delete all users", async () => {
-        for(let i = 0; i < testUsers.length; i += 1) {
-            // eslint-disable-next-line no-await-in-loop
-            await db.userStore.addUser(testUsers[i]);
-        }
+    test("delete all userApi", async () => {
         let returnedUsers = await db.userStore.getAllUsers();
         assert.equal(returnedUsers.length, 3);
         await db.userStore.deleteAll();
@@ -35,10 +35,6 @@ suite("User API tests", () => {
     });
 
     test("delete one user - success", async () => {
-        for (let i = 0; i < testUsers.length; i += 1) {
-            // eslint-disable-next-line no-await-in-loop
-            testUsers[i] = await db.userStore.addUser(testUsers[i]);
-        }
         await db.userStore.deleteUserById(testUsers[0]._id);
         const returnedUsers = await db.userStore.getAllUsers();
         assert.equal(returnedUsers.length, testUsers.length - 1);
@@ -64,10 +60,6 @@ suite("User API tests", () => {
     })
 
     test("delete one user - fail", async () => {
-      for (let i = 0; i < testUsers.length; i += 1) {
-        // eslint-disable-next-line no-await-in-loop
-        testUsers[i] = await db.userStore.addUser(testUsers[i]);
-      }
       await db.userStore.deleteUserById("bad-id");
       const allUsers = await db.userStore.getAllUsers();
       assert.equal(testUsers.length, allUsers.length);

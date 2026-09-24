@@ -14,16 +14,21 @@ export const userMemStore = {
   },
 
   async getUserById(id) {
-    return users.find((user) => user._id === id);
+    let returnedUser = users.find((user) => user._id === id);
+    if (returnedUser === undefined) returnedUser = null;
+    return returnedUser
   },
 
   async getUserByEmail(email) {
-    return users.find((user) => user.email === email);
+    let returnedUser = users.find((user) => user.email === email);
+    if (returnedUser === undefined) returnedUser = null;
+    return returnedUser
+    
   },
 
   async deleteUserById(id) {
-    const index = users.findIindex((user) => user._id === id);
-    users.splice(index, 1);
+    const index = users.findIndex((user) => user._id === id);
+    if (index !== -1) users.splice(index, 1);
   },
 
   async deleteAll() {
