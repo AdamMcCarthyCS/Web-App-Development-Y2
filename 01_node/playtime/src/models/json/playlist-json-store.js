@@ -19,13 +19,15 @@ export const playlistJsonStore = {
   async getPlaylistById(id) {
     await db.read();
     const list = db.data.playlists.find((playlist) => playlist._id === id);
+    if (list === undefined) {return null}
     list.tracks = await trackJsonStore.getTracksByPlaylistId(list._id);
     return list;
   },
 
   async getUserPlaylists(userid) {
     await db.read();
-    return db.data.playlists.filter((playlist) => playlist.userid === userid);
+    const userPlaylists = db.data.playlists.filter((playlist) => playlist.userid === userid);
+    return userPlaylists
   },
 
   async deletePlaylistById(id) {

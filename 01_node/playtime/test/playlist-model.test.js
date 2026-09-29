@@ -22,6 +22,13 @@ suite("Playlist API tests", () => {
         assert.equal(returnedPlaylists.length, 3);
     });
 
+
+    test("get user playlists - exists", async () => {
+        const userid = await testPlaylists[0].userid;
+        const userTestPlaylists = await db.playlistStore.getUserPlaylists(userid);
+        assert.equal(userTestPlaylists.length, 3);
+    })
+
     test("delete all playlists", async () => {
         let returnedPlaylists = await db.playlistStore.getAllPlaylists();
         assert.equal(returnedPlaylists.length, 3);
@@ -36,5 +43,27 @@ suite("Playlist API tests", () => {
         assert.deepEqual(addedPlaylist, returnedPlaylist1);
     });
 
+    test("get a playlist - failure", async () => {
+        const noPlaylistWithId = await db.playlistStore.getPlaylistById("doesnt exist");
+        assert.isNull(noPlaylistWithId);
+    });
 
+    test("get user playlists - failure", async () => {
+        const nonExistingPlaylist = await db.playlistStore.getUserPlaylists("doesnt exist")
+        console.log(nonExistingPlaylist)
+        assert.isEmpty(nonExistingPlaylist);
+    });
+
+    test("get a playlist - bad params", async () => {
+        let nullPlaylist = await db.playlistStore.getPlaylistById("");
+        assert.isNull(nullPlaylist);
+        nullPlaylist = await db.playlistStore.getPlaylistById();
+        assert.isNull(nullPlaylist);
+    });
+
+    test("delete one playlist - fail", async () => {
+        await db.playlistStore.deletePlaylistById("doesnt exist");
+        const afterDeletionPlaylists = await db.playlistStore.getAllPlaylists();
+        assert.equal(testPlaylists.length, afterDeletionPlaylists.length);
+    });
 })
