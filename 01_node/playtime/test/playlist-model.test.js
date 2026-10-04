@@ -4,7 +4,7 @@ import { playlist, testPlaylists } from "./fixtures.js"
 
 suite("Playlist API tests", () => {
     setup(async () => {
-        db.init("json");
+        db.init("mongo");
         await db.playlistStore.deleteAllPlaylists();
         for (let i = 0; i < testPlaylists.length; i += 1) {
             // eslint-disable-next-line no-await-in-loop
