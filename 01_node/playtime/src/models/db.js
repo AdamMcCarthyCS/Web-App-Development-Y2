@@ -24,7 +24,7 @@ export const db = {
     case "mongo":
       this.userStore = userMongoStore;
       this.playlistStore = playlistMongoStore;
-      this.trackMongoStore = trackMongoStore;
+      this.trackStore = trackMongoStore;
       connectMongo();
       break;
     default:
