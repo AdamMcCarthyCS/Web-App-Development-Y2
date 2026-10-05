@@ -1,7 +1,10 @@
 import { assert } from "chai"
+import { EventEmitter } from "events";
 import { db } from "../src/models/db.js"
 import { playlist, testPlaylists } from "./fixtures.js"
 import { assertSubset } from "./test-utils.js"
+
+EventEmitter.setMaxListeners(25);
 
 suite("Playlist API tests", () => {
     setup(async () => {
