@@ -7,7 +7,7 @@ const trackSchema = new Schema({
     artist: String,
     duration: Number,
     playlistid: {
-        type: Schema.types.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: "Playlist"
     },
 });
