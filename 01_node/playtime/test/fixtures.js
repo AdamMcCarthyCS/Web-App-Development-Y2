@@ -50,3 +50,25 @@
     tracks: []
   },
 ];
+
+export const track = {
+
+};
+
+export const testTracks = [
+    {
+      "title": "Sunchime",
+      "artist": "Dario G",
+      "duration": 5.24,
+    },
+    {
+      "title": "Around the World",
+      "artist": "Daft Punk",
+      "duration": 7.09,
+    },
+    {
+      "title": "Midnight City",
+      "artist": "M83",
+      "duration": 4.03,
+    }
+  ]
