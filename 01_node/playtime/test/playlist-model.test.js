@@ -1,6 +1,7 @@
 import { assert } from "chai"
 import { db } from "../src/models/db.js"
 import { playlist, testPlaylists } from "./fixtures.js"
+import { assertSubset } from "./test-utils.js"
 
 suite("Playlist API tests", () => {
     setup(async () => {
@@ -14,7 +15,7 @@ suite("Playlist API tests", () => {
 
     test("create a playlist", async () => {
         const newPlaylist = await db.playlistStore.addPlaylist(playlist);
-        assert.equal(playlist, newPlaylist);
+        assertSubset(playlist, newPlaylist);
     });
 
     test("get all playlists", async () => {
@@ -49,7 +50,7 @@ suite("Playlist API tests", () => {
     });
 
     test("get user playlists - failure", async () => {
-        const nonExistingPlaylist = await db.playlistStore.getUserPlaylists("doesnt exist")
+        const nonExistingPlaylist = await db.playlistStore.getUserPlaylists("0123456789abcdef01234567")
         console.log(nonExistingPlaylist)
         assert.isEmpty(nonExistingPlaylist);
     });
