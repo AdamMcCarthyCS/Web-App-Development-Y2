@@ -10,7 +10,7 @@ export const playlistMongoStore = {
 
     async getPlaylistById(id) {
         if (Mongoose.isValidObjectId(id)) {
-            const playlist = await Playlist.findone({ _id: id }).lean();
+            const playlist = await Playlist.findOne({ _id: id }).lean();
             if (playlist) {
                 playlist.tracks = await trackMongoStore.getTracksByPlaylistId(playlist)
             }
