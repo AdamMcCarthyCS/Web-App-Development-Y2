@@ -52,7 +52,9 @@
 ];
 
 export const track = {
-
+      "title": "Missing",
+      "artist": "Everything But The Girl",
+      "duration": 4.06,
 };
 
 export const testTracks = [
