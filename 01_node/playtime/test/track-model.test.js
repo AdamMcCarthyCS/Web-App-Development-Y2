@@ -10,7 +10,7 @@ suite("Track Model tests", () => {
     await db.trackStore.deleteAllTracks();
     for (let i = 0; i < testTracks.length; i += 1) {
       // eslint-disable-next-line no-await-in-loop
-      testTracks[i] = await db.trackStore.addTrack(playlist, testTracks[i]);
+      testTracks[i] = await db.trackStore.addTrack(playlist._id, testTracks[i]);
     }
   });
 
@@ -26,6 +26,11 @@ suite("Track Model tests", () => {
     await db.trackStore.deleteAllTracks();
     returnedTracks = await db.trackStore.getAllTracks();
     assert.equal(returnedTracks.length, 0);
+  });
+
+  test("get multiple tracks", async () => {
+    const tracks = await db.trackStore.getTracksByPlaylistId(playlist._id);
+    assert.equal(tracks.length, testTracks.length)
   });
 
   test("get a track - success", async () => {
