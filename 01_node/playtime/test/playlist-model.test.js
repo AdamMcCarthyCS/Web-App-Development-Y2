@@ -1,10 +1,14 @@
 import { assert } from "chai"
+import { EventEmitter } from "events";
 import { db } from "../src/models/db.js"
 import { playlist, testPlaylists } from "./fixtures.js"
+import { assertSubset } from "./test-utils.js"
+
+EventEmitter.setMaxListeners(25);
 
 suite("Playlist API tests", () => {
     setup(async () => {
-        db.init();
+        db.init("mongo");
         await db.playlistStore.deleteAllPlaylists();
         for (let i = 0; i < testPlaylists.length; i += 1) {
             // eslint-disable-next-line no-await-in-loop
@@ -14,7 +18,7 @@ suite("Playlist API tests", () => {
 
     test("create a playlist", async () => {
         const newPlaylist = await db.playlistStore.addPlaylist(playlist);
-        assert.equal(playlist, newPlaylist);
+        assertSubset(playlist, newPlaylist);
     });
 
     test("get all playlists", async () => {
@@ -49,7 +53,7 @@ suite("Playlist API tests", () => {
     });
 
     test("get user playlists - failure", async () => {
-        const nonExistingPlaylist = await db.playlistStore.getUserPlaylists("doesnt exist")
+        const nonExistingPlaylist = await db.playlistStore.getUserPlaylists("0123456789abcdef01234567")
         console.log(nonExistingPlaylist)
         assert.isEmpty(nonExistingPlaylist);
     });

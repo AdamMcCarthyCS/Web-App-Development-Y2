@@ -33,8 +33,10 @@ export const playlistJsonStore = {
   async deletePlaylistById(id) {
     await db.read();
     const index = db.data.playlists.findIndex((playlist) => playlist._id === id);
-    db.data.tracks.splice(index, 1);
-    await db.write();
+    if (index !== -1) {
+      db.data.playlists.splice(index, 1);
+      await db.write();
+    }
   },
 
   async deleteAllPlaylists() {

@@ -29,24 +29,48 @@
  ];
 
  export const playlist = {
-  userid: "61b2a825-8422-4bf7-bcdb-9423a9090852",
+  userid: "61b2a82584224bf7bcdb9423",
   title: "Late Night Drive",
   tracks: []
 }
 
  export const testPlaylists = [
   {
-    userid: "61b2a825-8422-4bf7-bcdb-9423a9090852",
+    userid: "61b2a82584224bf7bcdb9423",
     title: "Test Playlist",
     tracks: []
   },
   {
-    userid: "61b2a825-8422-4bf7-bcdb-9423a9090852",
+    userid: "61b2a82584224bf7bcdb9423",
     title: "Workout Mix"
   },
   {
-    userid: "61b2a825-8422-4bf7-bcdb-9423a9090852",
+    userid: "61b2a82584224bf7bcdb9423",
     title: "Chill Evening",
     tracks: []
   },
 ];
+
+export const track = {
+      "title": "Missing",
+      "artist": "Everything But The Girl",
+      "duration": 4.06,
+};
+
+export const testTracks = [
+    {
+      "title": "Sunchime",
+      "artist": "Dario G",
+      "duration": 5.24,
+    },
+    {
+      "title": "Around the World",
+      "artist": "Daft Punk",
+      "duration": 7.09,
+    },
+    {
+      "title": "Midnight City",
+      "artist": "M83",
+      "duration": 4.03,
+    }
+  ]
