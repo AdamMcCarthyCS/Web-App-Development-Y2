@@ -6,7 +6,7 @@ import { assertSubset } from "../test-utils.js"
 
 EventEmitter.setMaxListeners(25);
 
-suite("Playlist API tests", () => {
+suite("Playlist Model Tests", () => {
     setup(async () => {
         db.init("mongo");
         await db.playlistStore.deleteAllPlaylists();

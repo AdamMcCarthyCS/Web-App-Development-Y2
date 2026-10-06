@@ -3,7 +3,7 @@ import { db } from "../../src/models/db.js";
 import { testTracks, track, playlist } from "../fixtures.js";
 import { assertSubset } from "../test-utils.js"
 
-suite("Track Model tests", () => {
+suite("Track Model Tests", () => {
 
   setup(async () => {
     db.init("Mongo");

@@ -6,7 +6,7 @@ import { assertSubset } from "../test-utils.js"
 
 EventEmitter.setMaxListeners(25);
 
-suite("User API tests", () => {
+suite("User Model Tests", () => {
 
     setup(async () => {
         db.init("mongo");
