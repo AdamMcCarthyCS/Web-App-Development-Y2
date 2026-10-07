@@ -20,6 +20,7 @@ suite("User Model Tests", () => {
     test("create a user", async () => {
         const newUser = await db.userStore.addUser(maggie);
         assertSubset(maggie, newUser);
+        assert.isDefined(newUser._id);
     });
 
     test("delete all userApi", async () => {
