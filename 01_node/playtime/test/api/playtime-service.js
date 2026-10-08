@@ -20,7 +20,7 @@ export const playtimeService = {
     },
 
     async deleteAllUsers() {
-        const res = await axios.get(`${this.playtimeUrl}/api/users`);
+        const res = await axios.delete(`${this.playtimeUrl}/api/users`);
         return res.data;
     },
 };
