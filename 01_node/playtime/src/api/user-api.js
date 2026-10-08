@@ -19,12 +19,39 @@ export const userApi = {
 
     find: {
         auth: false,
-        handler: async function(request, h) {
+        handler: async function (request, h) {
             try {
                 const users = await db.userStore.getAllUsers();
                 return users;
             } catch (err) {
                 return Boom.serverUnavailable("Database Error")
+            }
+        },
+    },
+
+    findOne: {
+        auth: false,
+        handler: async function (request, h) {
+            try {
+                const user = await db.userStore.getUserById(request.params.id);
+                if (!user) {
+                    return Boom.notFound("No user with this id")
+                }
+                return user;
+            } catch (err) {
+                return Boom.serverUnavailable("Database Error")
+            }
+        },
+    },
+
+    deleteAll: {
+        auth: false,
+        handler: async function (request, h) {
+            try {
+                await db.userStore.deleteAll();
+                return h.response().code(204);
+            } catch (err) {
+                return Boom.serverUnavailable("Database Error");
             }
         },
     },
