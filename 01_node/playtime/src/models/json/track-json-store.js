@@ -21,8 +21,8 @@ export const trackJsonStore = {
     let foundTracks = db.data.tracks.filter((track) => track.playlistId === id);
     if (!foundTracks) {
       foundTracks = null;
-     }
-     return foundTracks
+    }
+    return foundTracks;
   },
 
   async getTrackById(id) {
