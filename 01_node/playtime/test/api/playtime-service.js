@@ -32,5 +32,15 @@ export const playtimeService = {
     async getPlaylist(id) {
         const res = await axios.get(`${this.playtimeUrl}/api/playlists/${id}`);
         return res.data;
+    },
+
+    async getAllPlaylists() {
+        const res = await axios.get(`${this.playtimeUrl}/api/playlists`);
+        return res.data;
+    },
+
+    async deleteAllPlaylists() {
+        const res = await axios.get(`${this.playtimeUrl}/api/playlists`);
+        return res.data;
     }
 };

@@ -5,6 +5,10 @@ import { playlist, testPlaylists } from "../fixtures.js";
 
 suite("Playlist API tests", () => {
     setup (async () => {
+        for (let i = 0; i < testPlaylists.length; i+=1) {
+            // eslint-disable-next-line no-await-in-loop
+            testPlaylists[i] = await playtimeService.createPlaylist(testPlaylists[i]);
+        }
     });
     
     teardown (async () => {
@@ -21,6 +25,14 @@ suite("Playlist API tests", () => {
         const originalPlaylist = await playtimeService.createPlaylist(playlist);
         const returnedPlaylist = await playtimeService.getPlaylist(originalPlaylist._id);
         assertSubset(originalPlaylist, returnedPlaylist);
+    });
+
+    test ("delete all playlists", async () => {
+        let returnedPlaylists = await playtimeService.getAllUsers();
+        assert.equal(returnedPlaylists.length, 3);
+        await playtimeService.deleteAllPlaylists();
+        returnedPlaylists = await playtimeService.getAllPlaylists();
+        assert.equal(returnedPlaylists.length, 0);
     })
 
 });
