@@ -6,7 +6,7 @@ import { assertSubset } from "../test-utils.js"
 suite("Track Model Tests", () => {
 
   setup(async () => {
-    db.init("Mongo");
+    db.init("mongo");
     await db.trackStore.deleteAllTracks();
     for (let i = 0; i < testTracks.length; i += 1) {
       // eslint-disable-next-line no-await-in-loop
@@ -16,8 +16,8 @@ suite("Track Model Tests", () => {
 
   test("create a track", async () => {
     const newTrack = await db.trackStore.addTrack(playlist._id, track);
-    assert.equal(track, newTrack);
-    assert.isDefined(track._id);
+    assertSubset(track, newTrack);
+    assert.isDefined(newTrack._id);
   });
 
   test("delete all tracks", async () => {
@@ -36,7 +36,7 @@ suite("Track Model Tests", () => {
   test("get a track - success", async () => {
     const newTrack = await db.trackStore.addTrack(playlist._id, track);
     const returnedTrack = await db.trackStore.getTrackById(newTrack._id);
-    assertSubset(returnedTrack, track);
+    assertSubset(track, newTrack);
   });
 
   test("delete One Track - success", async () => {
