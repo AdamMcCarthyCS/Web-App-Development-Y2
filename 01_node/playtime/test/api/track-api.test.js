@@ -29,4 +29,9 @@ suite("Track API tests", () => {
         returnedTracks = await playtimeService.getAllTracks();
         assert.equal(returnedTracks.length, 0);
   });
+
+    test("get a track - success", async () => {
+        const returnedTrack = await playtimeService.getTrack(testTracks[0]._id);
+        assert.deepEqual(testTracks[0], returnedTrack);
+    });
 });

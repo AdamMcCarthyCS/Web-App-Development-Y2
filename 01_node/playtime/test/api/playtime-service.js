@@ -62,4 +62,9 @@ export const playtimeService = {
         const res = await axios.delete(`${this.playtimeUrl}/api/tracks`);
         return res.data; 
     },
+
+    async getTrack(id) {
+        const res = await axios.get(`${this.playtimeUrl}/api/tracks/${id}`)
+        return res.data;
+    },
 };
