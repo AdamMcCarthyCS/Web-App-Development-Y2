@@ -8,6 +8,9 @@ export function assertSubset(subset, superset) {
 
   // If subset is a primitive, compare directly
   if (typeof subset !== "object") {
+    if (typeof superset?.toHexString === "function" && typeof subset === "string") {
+      return subset === superset.toHexString();
+    }
     return subset === superset;
   }
 
@@ -40,9 +43,17 @@ export function assertSubset(subset, superset) {
 
     const subsetValue = subset[key];
     const supersetValue = superset[key];
-    assert.equal(subsetValue, supersetValue);
 
-    // Recursively check if subsetValue is a subset of supersetValue
-    return assertSubset(subsetValue, supersetValue);
+    // Recurse for nested values so arrays and objects compare by contents.
+    if (subsetValue !== null && typeof subsetValue === "object") {
+      assert.isTrue(assertSubset(subsetValue, supersetValue));
+      return true;
+    }
+    if (typeof supersetValue?.toHexString === "function" && typeof subsetValue === "string") {
+      assert.equal(subsetValue, supersetValue.toHexString());
+      return true;
+    }
+    assert.equal(subsetValue, supersetValue);
+    return true;
   });
 }
