@@ -17,4 +17,10 @@ suite("Playlist API tests", () => {
         assert.isDefined(newPlaylist._id);
     });
 
+    test ("get a playlist - success", async () => {
+        const originalPlaylist = await playtimeService.createPlaylist(playlist);
+        const returnedPlaylist = await playtimeService.getPlaylist(originalPlaylist._id);
+        assertSubset(originalPlaylist, returnedPlaylist);
+    })
+
 });
