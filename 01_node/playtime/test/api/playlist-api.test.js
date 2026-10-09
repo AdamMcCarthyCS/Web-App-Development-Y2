@@ -34,6 +34,26 @@ suite("Playlist API tests", () => {
         await playtimeService.deleteAllPlaylists();
         returnedPlaylists = await playtimeService.getAllPlaylists();
         assert.equal(returnedPlaylists.length, 0);
+    });
+
+    test ("get a playlist - fail", async () => {
+        try {
+            const returnedPlaylist = await playtimeService.getPlaylist("1234");
+            assert.fail("Should not return a response");
+        } catch (error) {
+            assert(error.response.data.message === "No playlist with this id")
+        }
+    });
+
+    test ("get a playlist - deleted playlist", async () => {
+        await playtimeService.deleteAllPlaylists();
+        try {
+            const returnedPlaylist = await playtimeService.getPlaylist(testPlaylists[0]._id);
+            assert.fail("Should not return a response");
+        } catch (error) {
+            assert(error.response.data.message === "No playlist with this id");
+            assert.equal(error.response.data.statusCode, 404);
+        }
     })
 
 });
