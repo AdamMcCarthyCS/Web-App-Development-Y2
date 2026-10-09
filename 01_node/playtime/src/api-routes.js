@@ -8,4 +8,5 @@ export const apiRoutes = [
     { method: "GET", path: "/api/users/{id}", config: userApi.findOne },
     
     { method: "POST", path: "/api/playlists", config: playlistApi.create },
+    { method: "GET", path: "/api/playlists/{id}", config: playlistApi.findOne },
 ];

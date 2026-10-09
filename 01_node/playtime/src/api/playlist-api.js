@@ -16,4 +16,19 @@ export const playlistApi = {
             }
         },
     },
+
+    findOne: {
+        auth: false,
+        handler: async function (request, h) {
+            try {
+                const playlist = await db.playlistStore.getPlaylistById(request.params.id);
+                if (!playlist) {
+                    return Boom.notFound("No playlist with this id")
+                }
+                return playlist;
+            } catch (err) {
+                return Boom.serverUnavailable("Database Error")
+            }
+        },
+    },
 }
