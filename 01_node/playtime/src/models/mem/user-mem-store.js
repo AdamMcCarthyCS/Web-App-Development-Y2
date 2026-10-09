@@ -16,14 +16,13 @@ export const userMemStore = {
   async getUserById(id) {
     let returnedUser = users.find((user) => user._id === id);
     if (returnedUser === undefined) returnedUser = null;
-    return returnedUser
+    return returnedUser;
   },
 
   async getUserByEmail(email) {
     let returnedUser = users.find((user) => user.email === email);
     if (returnedUser === undefined) returnedUser = null;
-    return returnedUser
-    
+    return returnedUser;
   },
 
   async deleteUserById(id) {

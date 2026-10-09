@@ -26,7 +26,7 @@ export const userJsonStore = {
     await db.read();
     let u = db.data.users.find((user) => user.email === email);
     if (u === undefined) u = null;
-    return u; 
+    return u;
   },
 
   async deleteUserById(id) {

@@ -19,11 +19,11 @@ export const trackMemStore = {
   },
 
   async getTrackById(id) {
-  let foundTrack = tracks.find((track) => track._id === id);
-  if (!foundTrack) {
-    foundTrack = null;
-  }
-  return foundTrack;
+    let foundTrack = tracks.find((track) => track._id === id);
+    if (!foundTrack) {
+      foundTrack = null;
+    }
+    return foundTrack;
   },
 
   async getPlaylistTracks(playlistId) {

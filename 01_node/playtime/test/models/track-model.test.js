@@ -1,10 +1,9 @@
 import { assert } from "chai";
 import { db } from "../../src/models/db.js";
 import { testTracks, track, playlist } from "../fixtures.js";
-import { assertSubset } from "../test-utils.js"
+import { assertSubset } from "../test-utils.js";
 
 suite("Track Model Tests", () => {
-
   setup(async () => {
     db.init("mongo");
     await db.trackStore.deleteAllTracks();
@@ -30,7 +29,7 @@ suite("Track Model Tests", () => {
 
   test("get multiple tracks", async () => {
     const tracks = await db.trackStore.getTracksByPlaylistId(playlist._id);
-    assert.equal(tracks.length, testTracks.length)
+    assert.equal(tracks.length, testTracks.length);
   });
 
   test("get a track - success", async () => {
