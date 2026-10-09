@@ -24,6 +24,8 @@ export const playtimeService = {
         return res.data;
     },
 
+    
+
     async createPlaylist(playlist) {
         const res = await axios.post(`${this.playtimeUrl}/api/playlists`, playlist);
         return res.data;
@@ -40,7 +42,7 @@ export const playtimeService = {
     },
 
     async deleteAllPlaylists() {
-        const res = await axios.get(`${this.playtimeUrl}/api/playlists`);
+        const res = await axios.delete(`${this.playtimeUrl}/api/playlists`);
         return res.data;
     }
 };

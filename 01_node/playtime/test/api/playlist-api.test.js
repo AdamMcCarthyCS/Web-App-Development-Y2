@@ -5,6 +5,7 @@ import { playlist, testPlaylists } from "../fixtures.js";
 
 suite("Playlist API tests", () => {
     setup (async () => {
+        await playtimeService.deleteAllPlaylists();
         for (let i = 0; i < testPlaylists.length; i+=1) {
             // eslint-disable-next-line no-await-in-loop
             testPlaylists[i] = await playtimeService.createPlaylist(testPlaylists[i]);
@@ -28,7 +29,7 @@ suite("Playlist API tests", () => {
     });
 
     test ("delete all playlists", async () => {
-        let returnedPlaylists = await playtimeService.getAllUsers();
+        let returnedPlaylists = await playtimeService.getAllPlaylists();
         assert.equal(returnedPlaylists.length, 3);
         await playtimeService.deleteAllPlaylists();
         returnedPlaylists = await playtimeService.getAllPlaylists();
