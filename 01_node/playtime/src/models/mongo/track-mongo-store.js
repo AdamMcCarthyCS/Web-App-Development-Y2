@@ -10,14 +10,14 @@ export const trackMongoStore = {
     async addTrack(playlistId, track) {
         const newTrack = new Track({
         ...track,
-        playlistid: playlistId,
+        playlistId,
         });
         const trackObj = await newTrack.save();
         return this.getTrackById(trackObj._id);
     },
 
     async getTracksByPlaylistId(id) {
-        const tracks = await Track.find({ playlistid: id }).lean();
+        const tracks = await Track.find({ playlistId: id }).lean();
         return tracks;
     },
 

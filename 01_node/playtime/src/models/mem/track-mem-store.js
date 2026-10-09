@@ -9,13 +9,13 @@ export const trackMemStore = {
 
   async addTrack(playlistId, track) {
     track._id = v4();
-    track.playlistid = playlistId;
+    track.playlistId = playlistId;
     tracks.push(track);
     return track;
   },
 
   async getTracksByPlaylistId(id) {
-    return tracks.filter((track) => track.playlistid === id);
+    return tracks.filter((track) => track.playlistId === id);
   },
 
   async getTrackById(id) {
@@ -27,7 +27,7 @@ export const trackMemStore = {
   },
 
   async getPlaylistTracks(playlistId) {
-    let foundTracks = tracks.filter((track) => track.playlistid === playlistId);
+    let foundTracks = tracks.filter((track) => track.playlistId === playlistId);
     if (!foundTracks) {
       foundTracks = null;
     }
