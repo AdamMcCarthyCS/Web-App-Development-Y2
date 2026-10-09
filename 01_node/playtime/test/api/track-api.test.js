@@ -34,4 +34,25 @@ suite("Track API tests", () => {
         const returnedTrack = await playtimeService.getTrack(testTracks[0]._id);
         assert.deepEqual(testTracks[0], returnedTrack);
     });
+
+    test("get a track - bad id", async () => {
+    try {
+        const returnedTrack = await playtimeService.getTrack("1234");
+        assert.fail("Should not return a response");
+        } catch (error) {
+        assert(error.response.data.message === "No Track with this id");
+        assert.equal(error.response.data.statusCode, 404);
+    }
+  });
+
+    test("get a track - deleted track", async () => {
+        await playtimeService.deleteAllTracks();
+        try {
+        const returnedTrack = await playtimeService.getTrack(testTracks[0]._id);
+        assert.fail("Should not return a response");
+        } catch (error) {
+        assert(error.response.data.message === "No Track with this id");
+        assert.equal(error.response.data.statusCode, 404);
+        }
+    });
 });
