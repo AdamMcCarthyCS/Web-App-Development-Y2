@@ -52,4 +52,14 @@ export const playtimeService = {
         const res = await axios.post(`${this.playtimeUrl}/api/tracks`, {playlistId, track});
         return res.data;
     },
+
+    async getAllTracks() {
+        const res = await axios.get(`${this.playtimeUrl}/api/tracks`);
+        return res.data;
+    },
+
+    async deleteAllTracks() {
+        const res = await axios.delete(`${this.playtimeUrl}/api/tracks`);
+        return res.data; 
+    },
 };
