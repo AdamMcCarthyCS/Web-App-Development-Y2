@@ -42,5 +42,20 @@ export const trackApi = {
         },
   },
 
+    findOne: {
+        auth: false,
+        handler: async function (request, h) {
+        try {
+            const track = await db.trackStore.getTrackById(request.params.id);
+            if (!track) {
+            return Boom.notFound("No Track with this id");
+            }
+            return track;
+        } catch (err) {
+            return Boom.serverUnavailable("No Track with this id");
+        }
+        },
+    },
+
   
 };
