@@ -26,6 +26,18 @@ suite("Playlist API tests", () => {
     assertSubset(originalPlaylist, returnedPlaylist);
   });
 
+  test("delete one playlist", async () => {
+    const newPlaylist = await playtimeService.createPlaylist(playlist);
+    await playtimeService.deletePlaylist(newPlaylist._id);
+    try {
+      await playtimeService.getPlaylist(newPlaylist._id);
+      assert.fail("Should not return a response")
+    } catch (error) {
+      assert(error.response.data.message === "No playlist with this id");
+      assert.equal(error.response.data.statusCode, 404);
+    }
+  });
+
   test("delete all playlists", async () => {
     let returnedPlaylists = await playtimeService.getAllPlaylists();
     assert.equal(returnedPlaylists.length, 3);
@@ -49,8 +61,7 @@ suite("Playlist API tests", () => {
       const returnedPlaylist = await playtimeService.getPlaylist(testPlaylists[0]._id);
       assert.fail("Should not return a response");
     } catch (error) {
-      assert(error.response.data.message === "No playlist with this id");
-      assert.equal(error.response.data.statusCode, 404);
+      assert.equal(error.response.status, 404);
     }
   });
 });
