@@ -2,9 +2,11 @@ import { assert } from "chai";
 import { playtimeService } from "./playtime-service.js";
 import { assertSubset } from "../test-utils.js";
 import { maggie, playlist, track, testTracks } from "../fixtures.js";
+import { db } from "../../src/models/db.js"
 
 suite("Track API tests", () => {
   setup(async () => {
+    db.init("json")
     await playtimeService.deleteAllTracks();
     await playtimeService.deleteAllPlaylists();
     await playtimeService.deleteAllUsers();
