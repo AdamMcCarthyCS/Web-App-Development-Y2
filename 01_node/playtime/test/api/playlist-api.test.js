@@ -49,7 +49,7 @@ suite("Playlist API tests", () => {
     assert.equal(returnedPlaylists.length, 0);
   });
 
-  test("get a playlist - fail", async () => {
+  test("get a playlist bad id - fail", async () => {
     try {
       const returnedPlaylist = await playtimeService.getPlaylist("1234");
       assert.fail("Should not return a response");
@@ -58,7 +58,7 @@ suite("Playlist API tests", () => {
     }
   });
 
-  test("get a playlist - deleted playlist", async () => {
+  test("get a playlist deleted playlist fail", async () => {
     await playtimeService.deleteAllPlaylists();
     try {
       const returnedPlaylist = await playtimeService.getPlaylist(testPlaylists[0]._id);
