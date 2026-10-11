@@ -11,7 +11,9 @@
           "dev": "nodemon --ignore src/models/json/db.json --exec npm start",
           "lint": "eslint . --ext .js",
           "format": "prettier --write \"src/**/*.js\" \"test/**/*.js\"",
-          "test": "mocha"
+          "test": "mocha ",
+          "testApi": "mocha --no-config --ui tdd \"test/api/*.test.js\" --exit",
+          "testModels": "mocha --no-config --ui tdd \"test/models/*.test.js\" --exit"
      },
      "dependencies": {
           "@hapi/boom": "^10.0.1",
