@@ -1,15 +1,14 @@
 import { assert } from "chai";
 import { playtimeService } from "./playtime-service.js";
 import { assertSubset } from "../test-utils.js";
-import { playlist, testPlaylists } from "../fixtures.js";
+import { maggie, playlist, testPlaylists } from "../fixtures.js";
 
 suite("Playlist API tests", () => {
   setup(async () => {
     await playtimeService.deleteAllPlaylists();
-    for (let i = 0; i < testPlaylists.length; i += 1) {
-      // eslint-disable-next-line no-await-in-loop
-      testPlaylists[i] = await playtimeService.createPlaylist(testPlaylists[i]);
-    }
+    await playtimeService.deleteAllUsers();
+    const user = await playtimeService.createUser(maggie);
+    playlist.userid = user._id
   });
 
   teardown(async () => {});
@@ -39,6 +38,10 @@ suite("Playlist API tests", () => {
   });
 
   test("delete all playlists", async () => {
+    for (let i = 0; i < testPlaylists.length; i += 1) {
+      // eslint-disable-next-line no-await-in-loop
+      testPlaylists[i] = await playtimeService.createPlaylist(testPlaylists[i]);
+    }
     let returnedPlaylists = await playtimeService.getAllPlaylists();
     assert.equal(returnedPlaylists.length, 3);
     await playtimeService.deleteAllPlaylists();
