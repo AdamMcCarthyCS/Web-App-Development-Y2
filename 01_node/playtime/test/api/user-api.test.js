@@ -20,6 +20,18 @@ suite("User API tests", () => {
     assert.isDefined(newUser._id);
   });
 
+  test("delete one user", async () => {
+    const newUser = await playtimeService.createUser(maggie);
+    await playtimeService.deleteUser(newUser._id);
+    try {
+      await playtimeService.getUser(newUser._id);
+      assert.fail("Should not return a response")
+    } catch (error) {
+      assert(error.response.data.message === "No user with this id");
+      assert.equal(error.response.data.statusCode, 404);
+    }
+  });
+
   test("delete all users", async () => {
     let returnedUsers = await playtimeService.getAllUsers();
     assert.equal(returnedUsers.length, 3);

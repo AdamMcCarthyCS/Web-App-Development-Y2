@@ -19,10 +19,17 @@ export const playtimeService = {
     return res.data;
   },
 
+  async deleteUser(id) {
+    const res = await axios.delete(`${this.playtimeUrl}/api/users/${id}`);
+    return res;
+  },
+
   async deleteAllUsers() {
     const res = await axios.delete(`${this.playtimeUrl}/api/users`);
     return res.data;
   },
+
+
 
   async createPlaylist(playlist) {
     const res = await axios.post(`${this.playtimeUrl}/api/playlists`, playlist);
@@ -48,6 +55,8 @@ export const playtimeService = {
     const res = await axios.delete(`${this.playtimeUrl}/api/playlists`);
     return res.data;
   },
+
+
 
   async createTrack(playlistId, track) {
     const res = await axios.post(`${this.playtimeUrl}/api/tracks`, { playlistId, track });
