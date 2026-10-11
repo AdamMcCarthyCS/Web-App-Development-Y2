@@ -44,6 +44,22 @@ export const userApi = {
     },
   },
 
+  deleteOne: {
+    auth: false,
+    handler: async function (request, h){
+      try {
+        const user = await db.userStore.getUserById(request.params.id);
+        if (!user) {
+          return Boom.notFound("No user with this id");
+        }
+        await db.userStore.deleteUserById(user._id);
+        return h.response().code(204)
+      } catch {
+      return Boom.serverUnavailable("Database Error")
+      }
+    },
+  },
+
   deleteAll: {
     auth: false,
     handler: async function (request, h) {
