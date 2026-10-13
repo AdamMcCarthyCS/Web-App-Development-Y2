@@ -2,9 +2,11 @@ import { assert } from "chai";
 import { playtimeService } from "./playtime-service.js";
 import { assertSubset } from "../test-utils.js";
 import { maggie, testUsers } from "../fixtures.js";
+import { db } from "../../src/models/db.js"
 
 suite("User API tests", () => {
   setup(async () => {
+    db.init("json")
     await playtimeService.deleteAllUsers();
     for (let i = 0; i < testUsers.length; i += 1) {
       // eslint-disable-next-line no-await-in-loop
@@ -18,6 +20,18 @@ suite("User API tests", () => {
     const newUser = await playtimeService.createUser(maggie);
     assertSubset(maggie, newUser);
     assert.isDefined(newUser._id);
+  });
+
+  test("delete one user", async () => {
+    const newUser = await playtimeService.createUser(maggie);
+    await playtimeService.deleteUser(newUser._id);
+    try {
+      await playtimeService.getUser(newUser._id);
+      assert.fail("Should not return a response")
+    } catch (error) {
+      assert(error.response.data.message === "No user with this id");
+      assert.equal(error.response.data.statusCode, 404);
+    }
   });
 
   test("delete all users", async () => {

@@ -8,10 +8,12 @@
      "main": "src/server.js",
      "scripts": {
           "start": "node src/server.js",
-          "dev": "nodemon --exec npm start",
+          "dev": "nodemon --ignore src/models/json/db.json --exec npm start",
           "lint": "eslint . --ext .js",
           "format": "prettier --write \"src/**/*.js\" \"test/**/*.js\"",
-          "test": "mocha"
+          "test": "mocha ",
+          "testApi": "mocha --no-config --ui tdd \"test/api/*.test.js\" --exit",
+          "testModels": "mocha --no-config --ui tdd \"test/models/*.test.js\" --exit"
      },
      "dependencies": {
           "@hapi/boom": "^10.0.1",
@@ -28,6 +30,7 @@
           "uuid": "^14.0.2"
      },
      "devDependencies": {
+          "arkit": "^2.1.0",
           "axios": "^1.20.0",
           "eslint": "^8.57.1",
           "eslint-config-airbnb-base": "^15.0.0",
