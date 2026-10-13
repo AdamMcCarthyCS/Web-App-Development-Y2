@@ -6,14 +6,17 @@
      "author": "Adam McCarthy",
      "type": "module",
      "main": "src/server.js",
+     "nodemonConfig": {
+          "ignore": ["src/models/json/**/*.json"]
+     },
      "scripts": {
           "start": "node src/server.js",
-          "dev": "nodemon --ignore src/models/json/db.json --exec npm start",
+          "dev": "nodemon --exec npm start",
           "lint": "eslint . --ext .js",
           "format": "prettier --write \"src/**/*.js\" \"test/**/*.js\"",
-          "test": "mocha ",
-          "testApi": "mocha --no-config --ui tdd \"test/api/*.test.js\" --exit",
-          "testModels": "mocha --no-config --ui tdd \"test/models/*.test.js\" --exit"
+          "test": "mocha \"test/models/*.test.js\" \"test/api/*.test.js\"",
+          "testApi": "mocha \"test/api/*.test.js\" ",
+          "testModels": "mocha \"test/models/*.test.js\" "
      },
      "dependencies": {
           "@hapi/boom": "^10.0.1",

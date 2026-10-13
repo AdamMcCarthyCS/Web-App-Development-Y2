@@ -6,7 +6,6 @@ import { db } from "../../src/models/db.js"
 
 suite("Track API tests", () => {
   setup(async () => {
-    db.init("json")
     await playtimeService.deleteAllTracks();
     await playtimeService.deleteAllPlaylists();
     await playtimeService.deleteAllUsers();
