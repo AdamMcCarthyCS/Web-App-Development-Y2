@@ -19,4 +19,6 @@ export const apiRoutes = [
   { method: "GET", path: "/api/tracks", config: trackApi.find },
   { method: "DELETE", path: "/api/tracks", config: trackApi.deleteAll },
   { method: "GET", path: "/api/tracks/{id}", config: trackApi.findOne },
+
+  { method: "GET", path: "/{param*}", handler: { directory: { path: "./public"} }, options: { auth: false } }
 ];
