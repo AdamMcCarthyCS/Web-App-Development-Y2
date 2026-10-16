@@ -1,5 +1,7 @@
 import Boom from "@hapi/boom";
 import { db } from "../models/db.js";
+import { TrackArray, TrackSpec } from "../models/joi-schemas.js"
+import { validationError } from "./logger.js"
 
 export const trackApi = {
   create: {
@@ -28,6 +30,9 @@ export const trackApi = {
         return Boom.serverUnavailable("Database Error");
       }
     },
+    tags: ["api"],
+    description: "Delete all tracks",
+    notes: "Delete all tracks in the app",
   },
 
   find: {
@@ -40,6 +45,10 @@ export const trackApi = {
         return Boom.serverUnavailable("Database Error");
       }
     },
+    tags: ["api"],
+    description: "Get all tracks",
+    notes: "Returns details of all tracks",
+    response: { schema: TrackArray, failAction: validationError }
   },
 
   findOne: {
