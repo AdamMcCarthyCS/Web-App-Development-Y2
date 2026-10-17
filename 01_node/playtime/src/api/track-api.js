@@ -1,6 +1,6 @@
 import Boom from "@hapi/boom";
 import { db } from "../models/db.js";
-import { TrackArray, TrackSpec } from "../models/joi-schemas.js"
+import { TrackArray, TrackSpec, TrackSpecPlus, IdSpec } from "../models/joi-schemas.js"
 import { validationError } from "./logger.js"
 
 export const trackApi = {
@@ -18,6 +18,11 @@ export const trackApi = {
         return Boom.serverUnavailable("Database Error");
       }
     },
+    tags: ["api"],
+    description: "Create a track",
+    notes: "Returns the newly created track",
+    // validate: { payload: TrackSpec },
+    // response: { schema: TrackSpecPlus, failAction: validationError },
   },
 
   deleteAll: {
@@ -64,5 +69,10 @@ export const trackApi = {
         return Boom.serverUnavailable("No Track with this id");
       }
     },
+    tags: ["api"],
+    description: "Get one track",
+    notes: "Returns details of one traplaylistIdck using its id",
+    validate: { params: { id: IdSpec, failAction: validationError }},
+    response: { schema: TrackSpecPlus, failAction: validationError },
   },
 };

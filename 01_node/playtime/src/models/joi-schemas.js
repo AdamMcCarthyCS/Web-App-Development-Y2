@@ -31,9 +31,14 @@ export const TrackSpec = Joi.object()
 .keys({
   title: Joi.string().example("Hey Boy Hey Girl").required(),
   artist: Joi.string().example("The Chemical Brothers").required(),
-  duration: Joi.number().allow(3.38).optional(),
-  _id: IdSpec,
-  __v: Joi.number(),
-}).label("TrackDetails")
+  duration: Joi.number().example(3.38).optional(),
+  playlistId: IdSpec,
+}).label("Track")
 
-export const TrackArray = Joi.array().items(TrackSpec).label("TrackArray");
+export const TrackSpecPlus = TrackSpec.keys({
+    _id: IdSpec.required(),
+    __v: Joi.number(),
+  })
+  .label("TrackPlus");
+
+export const TrackArray = Joi.array().items(TrackSpecPlus).label("TrackArray");
