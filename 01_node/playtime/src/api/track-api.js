@@ -21,8 +21,8 @@ export const trackApi = {
     tags: ["api"],
     description: "Create a track",
     notes: "Returns the newly created track",
-    // validate: { payload: TrackSpec },
-    // response: { schema: TrackSpecPlus, failAction: validationError },
+    validate: { payload: { playlistId: IdSpec, track: TrackSpec }, failAction: validationError },
+    response: { schema: TrackSpecPlus, failAction: validationError },
   },
 
   deleteOne: {
@@ -39,6 +39,9 @@ export const trackApi = {
         return Boom.serverUnavailable("No Track with this id:", err);
       }
     },
+    tags: ["api"],
+    description: "Delete a track",
+    validate: { params: { id: IdSpec }, failAction: validationError },
   },
 
   deleteAll: {
