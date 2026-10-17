@@ -33,6 +33,11 @@ export const playlistApi = {
         return Boom.serverUnavailable("Database Error");
       }
     },
+    tags: ["api"],
+    description: "Create a playlist",
+    notes: "Returns the newly created playlist",
+    validate: { payload: PlaylistSpec , failAction: validationError },
+    response: { schema: PlaylistSpecPlus, failAction: validationError },
   },
 
   findOne: {
@@ -69,9 +74,10 @@ export const playlistApi = {
       return Boom.serverUnavailable("Database Error")
     }
   },
-  description: "Get all tracks",
-  notes: "Returns details of all tracks",
-  response: { schema: Array, failAction: validationError }
+  tags: ["api"],
+  description: "Delete one playlist",
+  notes: "Delete one of the playlist using its id",
+  validate: { params: { id: IdSpec, failAction: validationError} },
 },
 
   deleteAll: {
@@ -84,5 +90,8 @@ export const playlistApi = {
         return Boom.serverUnavailable("Database Error");
       }
     },
+    tags: ["api"],
+    description: "Delete all playlists",
+    notes: "Delete all of the playlists",
   },
 }

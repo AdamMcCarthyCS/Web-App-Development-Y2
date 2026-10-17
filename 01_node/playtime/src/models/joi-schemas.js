@@ -46,7 +46,7 @@ export const PlaylistSpec = Joi.object({
 }).label("Playlist")
 
 export const PlaylistSpecPlus = PlaylistSpec.keys({
-  _id: IdSpec.required(),
+  _id: IdSpec,
   __v: Joi.number(),
 }).label("PlaylistPlus")
 
