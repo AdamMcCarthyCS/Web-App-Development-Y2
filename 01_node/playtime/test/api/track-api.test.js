@@ -34,6 +34,21 @@ suite("Track API tests", () => {
     assert.equal(returnedTracks.length, 0);
   });
 
+  test("delete one track", async () => {
+    for (let i = 0; i < testTracks.length; i += 1) {
+      // eslint-disable-next-line no-await-in-loop
+      await playtimeService.createTrack(testTracks._id, testTracks[i]);
+    }
+    let returnedTracks = await playtimeService.getAllTracks();
+    assert.equal(returnedTracks.length, testTracks.length);
+    for (let i = 0; i < returnedTracks.length; i += 1) {
+      // eslint-disable-next-line no-await-in-loop
+      const deletedTrack = await playtimeService.deleteTrack(returnedTracks[i]._id);
+    }
+    returnedTracks = await playtimeService.getAllTracks();
+    assert.equal(returnedTracks.length, 0);
+  });
+
   test("get a track - success", async () => {
     const createdTrack = await playtimeService.createTrack(playlist._id, testTracks[0])
     const returnedTrack = await playtimeService.getTrack(createdTrack._id);

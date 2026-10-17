@@ -25,6 +25,22 @@ export const trackApi = {
     // response: { schema: TrackSpecPlus, failAction: validationError },
   },
 
+  deleteOne: {
+    auth: false,
+    handler: async function (request, h) {
+      try {
+        const track = await db.trackStore.getTrackById(request.params.id);
+        if (!track) {
+          return Boom.notFound("No Track with this id");
+        }
+        await db.trackStore.deleteTrack(track._id);
+        return h.response().code(204);
+      } catch (err) {
+        return Boom.serverUnavailable("No Track with this id:", err);
+      }
+    },
+  },
+
   deleteAll: {
     auth: false,
     handler: async function (request, h) {
@@ -75,4 +91,6 @@ export const trackApi = {
     validate: { params: { id: IdSpec, failAction: validationError }},
     response: { schema: TrackSpecPlus, failAction: validationError },
   },
+
+
 };
