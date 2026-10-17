@@ -29,25 +29,18 @@ export const testUsers = [
 ];
 
 export const playlist = {
-  userid: "61b2a82584224bf7bcdb9423",
   title: "Late Night Drive",
-  tracks: [],
-};
+  };
 
 export const testPlaylists = [
   {
-    userid: "61b2a82584224bf7bcdb9423",
-    title: "Test Playlist",
-    tracks: [],
+    title: "Summer Jams",
   },
   {
-    userid: "61b2a82584224bf7bcdb9423",
     title: "Workout Mix",
   },
   {
-    userid: "61b2a82584224bf7bcdb9423",
     title: "Chill Evening",
-    tracks: [],
   },
 ];
 

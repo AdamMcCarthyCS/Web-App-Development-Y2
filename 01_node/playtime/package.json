@@ -6,23 +6,30 @@
      "author": "Adam McCarthy",
      "type": "module",
      "main": "src/server.js",
+     "nodemonConfig": {
+          "ignore": [
+               "src/models/json/**/*.json"
+          ]
+     },
      "scripts": {
           "start": "node src/server.js",
-          "dev": "nodemon --ignore src/models/json/db.json --exec npm start",
+          "dev": "nodemon --exec npm start",
           "lint": "eslint . --ext .js",
           "format": "prettier --write \"src/**/*.js\" \"test/**/*.js\"",
-          "test": "mocha ",
-          "testApi": "mocha --no-config --ui tdd \"test/api/*.test.js\" --exit",
-          "testModels": "mocha --no-config --ui tdd \"test/models/*.test.js\" --exit"
+          "test": "mocha \"test/models/*.test.js\" \"test/api/*.test.js\"",
+          "testApi": "mocha \"test/api/*.test.js\" ",
+          "testModels": "mocha \"test/models/*.test.js\" "
      },
      "dependencies": {
           "@hapi/boom": "^10.0.1",
           "@hapi/cookie": "^12.0.1",
           "@hapi/hapi": "^21.4.10",
+          "@hapi/inert": "^7.1.2",
           "@hapi/vision": "^7.0.3",
           "chai": "^6.2.2",
           "dotenv": "^17.4.2",
           "handlebars": "^4.7.9",
+          "hapi-swagger": "^17.3.2",
           "joi": "^18.2.9",
           "lowdb": "^7.0.1",
           "mocha": "^10.8.2",

@@ -4,12 +4,15 @@ import { testTracks, track, playlist } from "../fixtures.js";
 import { assertSubset } from "../test-utils.js";
 
 suite("Track Model Tests", () => {
+  let seededTracks;
+
   setup(async () => {
     db.init("mongo");
     await db.trackStore.deleteAllTracks();
+    seededTracks = [];
     for (let i = 0; i < testTracks.length; i += 1) {
       // eslint-disable-next-line no-await-in-loop
-      testTracks[i] = await db.trackStore.addTrack(playlist._id, testTracks[i]);
+      seededTracks.push(await db.trackStore.addTrack(playlist._id, { ...testTracks[i] }));
     }
   });
 
@@ -39,7 +42,7 @@ suite("Track Model Tests", () => {
   });
 
   test("delete One Track - success", async () => {
-    const id = testTracks[0]._id;
+    const id = seededTracks[0]._id;
     await db.trackStore.deleteTrack(id);
     const returnedTracks = await db.trackStore.getAllTracks();
     assert.equal(returnedTracks.length, testTracks.length - 1);
