@@ -1,7 +1,8 @@
 import Boom from "@hapi/boom";
 import { db } from "../models/db.js";
 import { UserArray, UserSpec, UserSpecPlus, IdSpec } from "../models/joi-schemas.js";
-import { validationError } from "./logger.js"
+import { validationError } from "./logger.js";
+import { createToken } from "./jwt-utils.js";
 
 export const userApi = {
   create: {
@@ -93,5 +94,25 @@ export const userApi = {
   tags: ["api"],
   description: "Delete all users",
   notes: "Delete all users in the apps persistance location",
+  },
+
+  // jwt authentication
+  authenticate: {
+    auth: false,
+    handler: async function (request, h) {
+      try {
+        const user = await db.userStore.getUserByEmail(request.payload.email);
+        if (!user) {
+          return Boom.unauthorized("User not found");
+        }
+        if (user.password !== request.payload.password) {
+          return Boom.unauthorized("Invalid password");
+        }
+        const token = createToken(user);
+        return h.response({ success: true, token: token }).code(201);
+      } catch (error) {
+        return Boom.serverUnavailable("Database Error");
+      }
+    }
   },
 };
