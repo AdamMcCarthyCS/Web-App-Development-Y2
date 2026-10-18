@@ -1,3 +1,4 @@
+/* eslint-disable prefer-template */
 import axios from "axios";
 import { serviceUrl } from "../fixtures.js";
 
@@ -82,4 +83,16 @@ export const playtimeService = {
     const res = await axios.get(`${this.playtimeUrl}/api/tracks/${id}`);
     return res.data;
   },
+
+  async authenticate(user) {
+    const response = await axios.post(`${this.playtimeUrl}/api/users/authenticate`, user);
+    // eslint-disable-next-line dot-notation
+    axios.defaults.headers.common["Authorization"] = "Bearer" + response.data.token;
+    return response.data;
+  },
+
+  async clearAuth() {
+    // eslint-disable-next-line dot-notation
+    axios.defaults.headers.common["Authorization"] = "";
+  }
 };
