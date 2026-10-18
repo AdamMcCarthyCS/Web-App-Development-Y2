@@ -4,6 +4,8 @@ import { assertSubset } from "../test-utils.js";
 import { maggie, playlist, testPlaylists } from "../fixtures.js";
 import { db } from "../../src/models/db.js"
 
+const playlists = Array[testPlaylists.length];
+
 suite("Playlist API tests", () => {
   setup(async () => {
     await playtimeService.deleteAllPlaylists();
@@ -41,7 +43,7 @@ suite("Playlist API tests", () => {
   test("delete all playlists", async () => {
     for (let i = 0; i < testPlaylists.length; i += 1) {
       // eslint-disable-next-line no-await-in-loop
-      testPlaylists[i] = await playtimeService.createPlaylist(testPlaylists[i]);
+      await playtimeService.createPlaylist(testPlaylists[i]);
     }
     let returnedPlaylists = await playtimeService.getAllPlaylists();
     assert.equal(returnedPlaylists.length, 3);

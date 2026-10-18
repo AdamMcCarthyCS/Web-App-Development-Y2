@@ -16,7 +16,7 @@
           "dev": "nodemon --exec npm start",
           "lint": "eslint . --ext .js",
           "format": "prettier --write \"src/**/*.js\" \"test/**/*.js\"",
-          "test": "mocha \"test/models/*.test.js\" \"test/api/*.test.js\"",
+          "test": "mocha \"test/**/*.js\"",
           "testApi": "mocha \"test/api/*.test.js\" ",
           "testModels": "mocha \"test/models/*.test.js\" "
      },
