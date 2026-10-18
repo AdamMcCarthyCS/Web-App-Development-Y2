@@ -8,10 +8,14 @@ const playlists = Array[testPlaylists.length];
 
 suite("Playlist API tests", () => {
   setup(async () => {
+    playtimeService.clearAuth();
+    let user = await playtimeService.createUser(maggie);
+    await playtimeService.authenticate(maggie)
     await playtimeService.deleteAllPlaylists();
     await playtimeService.deleteAllUsers();
-    const user = await playtimeService.createUser(maggie);
-    playlist.userid = user._id
+    user = await playtimeService.createUser(maggie);
+    await playtimeService.authenticate(maggie);
+    playlist.userid = user._id;
   });
 
   teardown(async () => {});
