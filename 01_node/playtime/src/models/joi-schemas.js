@@ -7,9 +7,15 @@ export const IdSpec = Joi.alternatives().try(
 
 export const UserCredentialSpec = Joi.object()
 .keys({
-  email: Joi.string().email().required(),
-  password: Joi.string().required(),
+  email: Joi.string().example("user@email.com").email().required(),
+  password: Joi.string().example("secret_password").required(),
 }).label("UserCredentials")
+
+export const AuthResponseSpec = Joi.object()
+.keys({
+  success: Joi.bool().example(true).required(),
+  token: Joi.string().example("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjMiLCJuYW1lIjoiSG9tZXIgU2ltcHNvbiJ9.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c")
+})
 
 export const UserSpec = UserCredentialSpec.keys({
   firstName: Joi.string().example("Homer").required(),
