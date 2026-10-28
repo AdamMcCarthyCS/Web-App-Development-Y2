@@ -1,7 +1,7 @@
 import { assert } from "chai";
 import { playtimeService } from "./playtime-service.js";
 import { assertSubset } from "../test-utils.js";
-import { maggie, playlist, track, testTracks } from "../fixtures.js";
+import { maggie, maggieCredentials, playlist, track, testTracks } from "../fixtures.js";
 
 suite("Track API tests", () => {
   let tracks;
@@ -14,12 +14,12 @@ suite("Track API tests", () => {
     trackFixture = { ...track };
     playtimeService.clearAuth();
     user = await playtimeService.createUser(maggie);
-    await playtimeService.authenticate(maggie);
+    await playtimeService.authenticate(maggieCredentials);
     await playtimeService.deleteAllTracks();
     await playtimeService.deleteAllPlaylists();
     await playtimeService.deleteAllUsers();
     user = await playtimeService.createUser(maggie);
-    await playtimeService.authenticate(maggie);
+    await playtimeService.authenticate(maggieCredentials);
     testPlaylist = { title: playlist.title, userid: user._id };
   });
 

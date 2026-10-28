@@ -1,8 +1,7 @@
 import { assert } from "chai";
 import { playtimeService } from "./playtime-service.js";
 import { assertSubset } from "../test-utils.js";
-import { maggie, playlist, testPlaylists } from "../fixtures.js";
-import { db } from "../../src/models/db.js";
+import { maggie, maggieCredentials, playlist, testPlaylists } from "../fixtures.js";
 
 const playlists = Array[testPlaylists.length];
 
@@ -10,11 +9,11 @@ suite("Playlist API tests", () => {
   setup(async () => {
     playtimeService.clearAuth();
     let user = await playtimeService.createUser(maggie);
-    await playtimeService.authenticate(maggie);
+    await playtimeService.authenticate(maggieCredentials);
     await playtimeService.deleteAllPlaylists();
     await playtimeService.deleteAllUsers();
     user = await playtimeService.createUser(maggie);
-    await playtimeService.authenticate(maggie);
+    await playtimeService.authenticate(maggieCredentials);
     playlist.userid = user._id;
   });
 

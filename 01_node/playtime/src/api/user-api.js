@@ -1,6 +1,6 @@
 import Boom from "@hapi/boom";
 import { db } from "../models/db.js";
-import { UserArray, UserSpec, AuthResponseSpec, UserSpecPlus, IdSpec } from "../models/joi-schemas.js";
+import { UserArray, UserSpec, UserCredentialSpec, AuthResponseSpec, UserSpecPlus, IdSpec } from "../models/joi-schemas.js";
 import { validationError } from "./logger.js";
 import { createToken } from "./jwt-utils.js";
 
@@ -117,7 +117,7 @@ export const userApi = {
     tags: ["api"],
     description: "Authenticate a user",
     notes: "If user has valid email/password, create and return a JWT token",
-    validate: { payload: UserSpec, failAction: validationError },
+    validate: { payload: UserCredentialSpec, failAction: validationError },
     response: { schema: AuthResponseSpec, failAction: validationError },
   },
 };
