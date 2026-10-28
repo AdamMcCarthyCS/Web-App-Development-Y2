@@ -57,28 +57,28 @@ export const userApi = {
     tags: ["api"],
     description: "Get one user by id",
     notes: "Returns all details of selected user",
-    validate: { params: { id: IdSpec }},
-    response: { schema: UserSpecPlus, failAction: validationError }
+    validate: { params: { id: IdSpec } },
+    response: { schema: UserSpecPlus, failAction: validationError },
   },
 
   deleteOne: {
     auth: { strategy: "jwt" },
-    handler: async function (request, h){
+    handler: async function (request, h) {
       try {
         const user = await db.userStore.getUserById(request.params.id);
         if (!user) {
           return Boom.notFound("No user with this id");
         }
         await db.userStore.deleteUserById(user._id);
-        return h.response().code(204)
+        return h.response().code(204);
       } catch {
-      return Boom.serverUnavailable("Database Error")
+        return Boom.serverUnavailable("Database Error");
       }
     },
-  tags: ["api"],
-  description: "Delete one user",
-  validate: { params: { id: IdSpec } },
-  notes: "Delete one user using their id",
+    tags: ["api"],
+    description: "Delete one user",
+    validate: { params: { id: IdSpec } },
+    notes: "Delete one user using their id",
   },
 
   deleteAll: {
@@ -91,9 +91,9 @@ export const userApi = {
         return Boom.serverUnavailable("Database Error");
       }
     },
-  tags: ["api"],
-  description: "Delete all users",
-  notes: "Delete all users in the apps persistance location",
+    tags: ["api"],
+    description: "Delete all users",
+    notes: "Delete all users in the apps persistance location",
   },
 
   // jwt authentication
@@ -116,7 +116,7 @@ export const userApi = {
     },
     tags: ["api"],
     description: "Authenticate a user",
-    notes: "Authenticate a user using a jwt token",
+    notes: "If user has valid email/password, create and return a JWT token",
     validate: { payload: UserSpec, failAction: validationError },
     response: { schema: AuthResponseSpec, failAction: validationError },
   },

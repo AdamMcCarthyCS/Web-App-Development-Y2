@@ -2,7 +2,7 @@ import { assert } from "chai";
 import { playtimeService } from "./playtime-service.js";
 import { assertSubset } from "../test-utils.js";
 import { maggie, playlist, testPlaylists } from "../fixtures.js";
-import { db } from "../../src/models/db.js"
+import { db } from "../../src/models/db.js";
 
 const playlists = Array[testPlaylists.length];
 
@@ -10,7 +10,7 @@ suite("Playlist API tests", () => {
   setup(async () => {
     playtimeService.clearAuth();
     let user = await playtimeService.createUser(maggie);
-    await playtimeService.authenticate(maggie)
+    await playtimeService.authenticate(maggie);
     await playtimeService.deleteAllPlaylists();
     await playtimeService.deleteAllUsers();
     user = await playtimeService.createUser(maggie);
@@ -37,7 +37,7 @@ suite("Playlist API tests", () => {
     await playtimeService.deletePlaylist(newPlaylist._id);
     try {
       await playtimeService.getPlaylist(newPlaylist._id);
-      assert.fail("Should not return a response")
+      assert.fail("Should not return a response");
     } catch (error) {
       assert(error.response.data.message === "No playlist with this id");
       assert.equal(error.response.data.statusCode, 404);

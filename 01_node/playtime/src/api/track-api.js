@@ -1,7 +1,7 @@
 import Boom from "@hapi/boom";
 import { db } from "../models/db.js";
-import { TrackArray, TrackSpec, TrackSpecPlus, IdSpec } from "../models/joi-schemas.js"
-import { validationError } from "./logger.js"
+import { TrackArray, TrackSpec, TrackSpecPlus, IdSpec } from "../models/joi-schemas.js";
+import { validationError } from "./logger.js";
 
 export const trackApi = {
   create: {
@@ -72,7 +72,7 @@ export const trackApi = {
     tags: ["api"],
     description: "Get all tracks",
     notes: "Returns details of all tracks",
-    response: { schema: TrackArray, failAction: validationError }
+    response: { schema: TrackArray, failAction: validationError },
   },
 
   findOne: {
@@ -91,9 +91,7 @@ export const trackApi = {
     tags: ["api"],
     description: "Get one track",
     notes: "Returns details of one traplaylistIdck using its id",
-    validate: { params: { id: IdSpec, failAction: validationError }},
+    validate: { params: { id: IdSpec, failAction: validationError } },
     response: { schema: TrackSpecPlus, failAction: validationError },
   },
-
-
 };

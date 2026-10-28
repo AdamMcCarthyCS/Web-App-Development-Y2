@@ -2,7 +2,7 @@ import { assert } from "chai";
 import { playtimeService } from "./playtime-service.js";
 import { assertSubset } from "../test-utils.js";
 import { maggie, testUsers } from "../fixtures.js";
-import { db } from "../../src/models/db.js"
+import { db } from "../../src/models/db.js";
 
 const users = Array(testUsers.length);
 
@@ -33,7 +33,7 @@ suite("User API tests", () => {
     await playtimeService.deleteUser(newUser._id);
     try {
       await playtimeService.getUser(newUser._id);
-      assert.fail("Should not return a response")
+      assert.fail("Should not return a response");
     } catch (error) {
       assert(error.response.data.message === "No user with this id");
       assert.equal(error.response.data.statusCode, 404);
@@ -68,7 +68,7 @@ suite("User API tests", () => {
   test("get a user - deleted user", async () => {
     await playtimeService.deleteAllUsers();
     await playtimeService.createUser(maggie);
-    await playtimeService.authenticate(maggie)
+    await playtimeService.authenticate(maggie);
     try {
       const returnedUser = await playtimeService.getUser(users[0]._id);
       assert.fail("Should not return a response");

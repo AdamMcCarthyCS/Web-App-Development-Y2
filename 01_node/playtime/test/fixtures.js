@@ -30,7 +30,7 @@ export const testUsers = [
 
 export const playlist = {
   title: "Late Night Drive",
-  };
+};
 
 export const testPlaylists = [
   {

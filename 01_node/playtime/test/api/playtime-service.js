@@ -30,8 +30,6 @@ export const playtimeService = {
     return res.data;
   },
 
-
-
   async createPlaylist(playlist) {
     const res = await axios.post(`${this.playtimeUrl}/api/playlists`, playlist);
     return res.data;
@@ -56,8 +54,6 @@ export const playtimeService = {
     const res = await axios.delete(`${this.playtimeUrl}/api/playlists`);
     return res.data;
   },
-
-
 
   async createTrack(playlistId, track) {
     const res = await axios.post(`${this.playtimeUrl}/api/tracks`, { playlistId, track });
@@ -94,5 +90,5 @@ export const playtimeService = {
   async clearAuth() {
     // eslint-disable-next-line dot-notation
     axios.defaults.headers.common["Authorization"] = "";
-  }
+  },
 };
