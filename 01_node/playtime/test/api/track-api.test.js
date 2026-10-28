@@ -7,16 +7,20 @@ suite("Track API tests", () => {
   let tracks;
   let trackFixture;
   let testPlaylist;
+  let user;
 
   setup(async () => {
     tracks = testTracks.map((testTrack) => ({ ...testTrack }));
     trackFixture = { ...track };
+    playtimeService.clearAuth();
+    user = await playtimeService.createUser(maggie);
+    await playtimeService.authenticate(maggie);
     await playtimeService.deleteAllTracks();
     await playtimeService.deleteAllPlaylists();
     await playtimeService.deleteAllUsers();
-    const user = await playtimeService.createUser(maggie);
+    user = await playtimeService.createUser(maggie);
+    await playtimeService.authenticate(maggie);
     testPlaylist = { title: playlist.title, userid: user._id };
-    
   });
 
   teardown(async () => {});

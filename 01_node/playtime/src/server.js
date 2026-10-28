@@ -5,14 +5,16 @@ import Handlebars from "handlebars";
 import path from "path";
 import { fileURLToPath } from "url";
 import HapiSwagger from "hapi-swagger";
-
 import Cookie from "@hapi/cookie";
 import dotenv from "dotenv";
 import Joi from "joi";
+import jwt from "hapi-auth-jwt2";
+
 import { webRoutes } from "./web-routes.js";
 import { apiRoutes } from "./api-routes.js";
 import { db } from "./models/db.js";
 import { accountsController } from "./controllers/accounts-controller.js";
+import { validate } from "./api/jwt-utils.js";
 
 const result = dotenv.config();
 if (result.error) {
@@ -40,6 +42,7 @@ async function init() {
     Vision,
     Cookie,
     Inert,
+    jwt,
     {
       plugin: HapiSwagger,
       options: swaggerOptions,
@@ -51,12 +54,19 @@ async function init() {
   server.auth.strategy("session", "cookie", {
     cookie: {
       name: process.env.NAME,
-      password: process.env.PASSWORD,
+      password: process.env.cookie_password,
       isSecure: false,
     },
     redirectTo: "/",
     validate: accountsController.validate,
   });
+
+  server.auth.strategy("jwt", "jwt", {
+    key: process.env.cookie_password,
+    validate: validate,
+    verifyOptions: { algorithms: ["HS256"]}
+  })
+
   server.auth.default("session");
 
   server.views({
