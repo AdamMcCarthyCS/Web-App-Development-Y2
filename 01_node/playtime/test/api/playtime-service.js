@@ -55,8 +55,8 @@ export const playtimeService = {
     return res.data;
   },
 
-  async createTrack(playlistId, track) {
-    const res = await axios.post(`${this.playtimeUrl}/api/tracks`, { playlistId, track });
+  async createTrack(playlistid, track) {
+    const res = await axios.post(`${this.playtimeUrl}/api/tracks`, { playlistid, track });
     return res.data;
   },
 

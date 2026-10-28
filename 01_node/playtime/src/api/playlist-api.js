@@ -55,7 +55,7 @@ export const playlistApi = {
     },
     tags: ["api"],
     description: "Get one playlist",
-    notes: "Returns details of one traplaylistIdck using its id",
+    notes: "Returns details of one traplaylistidck using its id",
     validate: { params: { id: IdSpec, failAction: validationError } },
     response: { schema: PlaylistSpecPlus, failAction: validationError },
   },

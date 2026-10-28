@@ -7,10 +7,10 @@ export const trackJsonStore = {
     return db.data.tracks;
   },
 
-  async addTrack(playlistId, track) {
+  async addTrack(playlistid, track) {
     await db.read();
     track._id = v4();
-    track.playlistId = playlistId;
+    track.playlistid = playlistid;
     db.data.tracks.push(track);
     await db.write();
     return track;
@@ -18,7 +18,7 @@ export const trackJsonStore = {
 
   async getTracksByPlaylistId(id) {
     await db.read();
-    let foundTracks = db.data.tracks.filter((track) => track.playlistId === id);
+    let foundTracks = db.data.tracks.filter((track) => track.playlistid === id);
     if (!foundTracks) {
       foundTracks = null;
     }

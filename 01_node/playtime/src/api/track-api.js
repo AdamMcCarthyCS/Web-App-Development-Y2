@@ -8,8 +8,8 @@ export const trackApi = {
     auth: { strategy: "jwt" },
     handler: async function (request, h) {
       try {
-        const { playlistId, track } = request.payload;
-        const newTrack = await db.trackStore.addTrack(playlistId, track);
+        const { playlistid, track } = request.payload;
+        const newTrack = await db.trackStore.addTrack(playlistid, track);
         if (newTrack) {
           return h.response(newTrack).code(201);
         }
@@ -21,7 +21,7 @@ export const trackApi = {
     tags: ["api"],
     description: "Create a track",
     notes: "Returns the newly created track",
-    validate: { payload: { playlistId: IdSpec, track: TrackSpec }, failAction: validationError },
+    validate: { payload: { playlistid: IdSpec, track: TrackSpec }, failAction: validationError },
     response: { schema: TrackSpecPlus, failAction: validationError },
   },
 
@@ -90,7 +90,7 @@ export const trackApi = {
     },
     tags: ["api"],
     description: "Get one track",
-    notes: "Returns details of one traplaylistIdck using its id",
+    notes: "Returns details of one traplaylistidck using its id",
     validate: { params: { id: IdSpec, failAction: validationError } },
     response: { schema: TrackSpecPlus, failAction: validationError },
   },

@@ -31,7 +31,7 @@ export const TrackSpec = Joi.object()
     title: Joi.string().example("Hey Boy Hey Girl").required(),
     artist: Joi.string().example("The Chemical Brothers").required(),
     duration: Joi.number().allow("").example(3.38).optional(),
-    playlistId: IdSpec,
+    playlistid: IdSpec,
   })
   .label("Track");
 
