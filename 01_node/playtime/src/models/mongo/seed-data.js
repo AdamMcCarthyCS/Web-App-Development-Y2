@@ -20,4 +20,20 @@ export const seedData = {
       password: "secret"
     }
   },
+  playlists: {
+    _model: "Playlist",
+    mozart: {
+        title: "Mozart Favourites",
+        userid: "->users.bart"
+    },
+  },
+  tracks: {
+    _model: "Track",
+    track_1 : {
+        title: "Violin Concerto No. 1",
+        artist: "Mozart",
+        duration: 15,
+        playlistid: "->playlists.mozart"
+    },
+  }
 };
