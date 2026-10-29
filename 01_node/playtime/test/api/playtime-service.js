@@ -83,7 +83,7 @@ export const playtimeService = {
   async authenticate(userCredentials) {
     const response = await axios.post(`${this.playtimeUrl}/api/users/authenticate`, userCredentials);
     // eslint-disable-next-line dot-notation
-    axios.defaults.headers.common["Authorization"] = "Bearer" + response.data.token;
+    axios.defaults.headers.common["Authorization"] = "Bearer " + response.data.token;
     return response.data;
   },
 

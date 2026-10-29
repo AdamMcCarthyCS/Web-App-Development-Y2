@@ -13,7 +13,7 @@ suite("User API tests", () => {
     await playtimeService.deleteAllUsers();
     for (let i = 0; i < testUsers.length; i += 1) {
       // eslint-disable-next-line no-await-in-loop
-      users[0] = await playtimeService.createUser(testUsers[i]);
+      users[i] = await playtimeService.createUser(testUsers[i]);
     }
     await playtimeService.createUser(maggie);
     await playtimeService.authenticate(maggieCredentials);

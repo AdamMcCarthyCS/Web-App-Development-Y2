@@ -6,9 +6,10 @@ import { maggie, maggieCredentials, playlist, testPlaylists } from "../fixtures.
 const playlists = Array[testPlaylists.length];
 
 suite("Playlist API tests", () => {
+  let user = null;
   setup(async () => {
     playtimeService.clearAuth();
-    let user = await playtimeService.createUser(maggie);
+    user = await playtimeService.createUser(maggie);
     await playtimeService.authenticate(maggieCredentials);
     await playtimeService.deleteAllPlaylists();
     await playtimeService.deleteAllUsers();

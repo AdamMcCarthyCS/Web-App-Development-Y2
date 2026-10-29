@@ -24,9 +24,14 @@ export const playlistApi = {
     auth: { strategy: "jwt" },
     handler: async function (request, h) {
       try {
-        const playlist = await db.playlistStore.addPlaylist(request.payload);
-        if (playlist) {
-          return h.response(playlist).code(201);
+        const playlist = request.payload;
+        const userid = request.auth.credentials._id;
+        const newPlaylist = await db.playlistStore.addPlaylist({
+          ...playlist,
+          userid
+        });
+        if (newPlaylist) {
+          return h.response(newPlaylist).code(201);
         }
         return Boom.badImplementation("error creating playlist");
       } catch (err) {
