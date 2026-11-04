@@ -60,7 +60,8 @@ export const seedData = {
     },
     study: {
       title: "Lisa's Study Mix",
-      userid: "->users.lisa"
+      userid: "->users.lisa",
+      img: "https://res.cloudinary.com/da9cz3ug6/image/upload/c_fill,g_auto,h_512,w_512,r_100,f_auto/v1793816369/irtixxcnblqboqxowjyg.jpg"
     },
     sunday: {
       title: "Sunday Hymns",

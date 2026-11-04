@@ -22,7 +22,23 @@ export const imageStore = {
     uploadImage: async function(imagefile) {
         writeFileSync("./public/temp.img", imagefile);
         const response = await cloudinary.v2.uploader.upload("./public/temp.img");
-        return response.url;
+
+        // add image transformation
+        const imageUrl = cloudinary.v2.url(response.public_id, {
+            secure: true,
+            transformation: [
+                {
+                    width: 512,
+                    height: 512,
+                    crop: "fill",
+                    gravity: "auto",
+                    fetch_format: "auto",
+                    radius: 50,
+                },
+            ],
+        });
+
+        return imageUrl;
     },
 
     deleteImage: async function(img) {
