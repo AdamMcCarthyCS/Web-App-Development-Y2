@@ -7,12 +7,13 @@ import { assertSubset } from "../test-utils.js";
 EventEmitter.setMaxListeners(25);
 
 suite("Playlist Model Tests", () => {
+  const newPlaylists = Array[testPlaylists.length]
   setup(async () => {
     db.init("mongo");
     await db.playlistStore.deleteAllPlaylists();
     for (let i = 0; i < testPlaylists.length; i += 1) {
       // eslint-disable-next-line no-await-in-loop
-      testPlaylists[i] = await db.playlistStore.addPlaylist(testPlaylists[i]);
+      await db.playlistStore.addPlaylist(testPlaylists[i]);
     }
   });
 

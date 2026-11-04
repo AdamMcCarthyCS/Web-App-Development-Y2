@@ -1,21 +1,20 @@
 import { assert } from "chai";
 import { playtimeService } from "./playtime-service.js";
 import { assertSubset } from "../test-utils.js";
-import { maggie, playlist, testPlaylists } from "../fixtures.js";
-import { db } from "../../src/models/db.js"
+import { maggie, maggieCredentials, playlist, testPlaylists } from "../fixtures.js";
 
 const playlists = Array[testPlaylists.length];
 
 suite("Playlist API tests", () => {
+  let user = null;
   setup(async () => {
     playtimeService.clearAuth();
-    let user = await playtimeService.createUser(maggie);
-    await playtimeService.authenticate(maggie)
+    user = await playtimeService.createUser(maggie);
+    await playtimeService.authenticate(maggieCredentials);
     await playtimeService.deleteAllPlaylists();
     await playtimeService.deleteAllUsers();
     user = await playtimeService.createUser(maggie);
-    await playtimeService.authenticate(maggie);
-    playlist.userid = user._id;
+    await playtimeService.authenticate(maggieCredentials);
   });
 
   teardown(async () => {});
@@ -24,6 +23,7 @@ suite("Playlist API tests", () => {
     const newPlaylist = await playtimeService.createPlaylist(playlist);
     assertSubset(playlist, newPlaylist);
     assert.isDefined(newPlaylist._id);
+    assert.equal(newPlaylist.userid, user._id)
   });
 
   test("get a playlist - success", async () => {
@@ -37,7 +37,7 @@ suite("Playlist API tests", () => {
     await playtimeService.deletePlaylist(newPlaylist._id);
     try {
       await playtimeService.getPlaylist(newPlaylist._id);
-      assert.fail("Should not return a response")
+      assert.fail("Should not return a response");
     } catch (error) {
       assert(error.response.data.message === "No playlist with this id");
       assert.equal(error.response.data.statusCode, 404);

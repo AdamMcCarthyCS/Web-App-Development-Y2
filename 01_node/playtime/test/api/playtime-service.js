@@ -30,8 +30,6 @@ export const playtimeService = {
     return res.data;
   },
 
-
-
   async createPlaylist(playlist) {
     const res = await axios.post(`${this.playtimeUrl}/api/playlists`, playlist);
     return res.data;
@@ -57,10 +55,8 @@ export const playtimeService = {
     return res.data;
   },
 
-
-
-  async createTrack(playlistId, track) {
-    const res = await axios.post(`${this.playtimeUrl}/api/tracks`, { playlistId, track });
+  async createTrack(playlistid, track) {
+    const res = await axios.post(`${this.playtimeUrl}/api/tracks`, { playlistid, track });
     return res.data;
   },
 
@@ -84,15 +80,15 @@ export const playtimeService = {
     return res.data;
   },
 
-  async authenticate(user) {
-    const response = await axios.post(`${this.playtimeUrl}/api/users/authenticate`, user);
+  async authenticate(userCredentials) {
+    const response = await axios.post(`${this.playtimeUrl}/api/users/authenticate`, userCredentials);
     // eslint-disable-next-line dot-notation
-    axios.defaults.headers.common["Authorization"] = "Bearer" + response.data.token;
+    axios.defaults.headers.common["Authorization"] = "Bearer " + response.data.token;
     return response.data;
   },
 
   async clearAuth() {
     // eslint-disable-next-line dot-notation
     axios.defaults.headers.common["Authorization"] = "";
-  }
+  },
 };

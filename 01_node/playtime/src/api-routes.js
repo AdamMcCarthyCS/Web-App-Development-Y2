@@ -20,9 +20,9 @@ export const apiRoutes = [
   { method: "DELETE", path: "/api/tracks", config: trackApi.deleteAll },
   { method: "DELETE", path: "/api/tracks/{id}", config: trackApi.deleteOne },
   { method: "GET", path: "/api/tracks/{id}", config: trackApi.findOne },
-  
+
   // swagger
-  { method: "GET", path: "/{param*}", handler: { directory: { path: "./public"} }, options: { auth: false } },
+  { method: "GET", path: "/{param*}", handler: { directory: { path: "./public" } }, options: { auth: false } },
   // jwt authentication
   { method: "POST", path: "/api/users/authenticate", config: userApi.authenticate },
 ];

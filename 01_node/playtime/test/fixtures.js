@@ -5,6 +5,11 @@ export const maggie = {
   password: "secret",
 };
 
+export const maggieCredentials = {
+  email: "maggie@simpson.com",
+  password: "secret"
+};
+
 export const testUsers = [
   {
     firstName: "Homer",
@@ -30,7 +35,7 @@ export const testUsers = [
 
 export const playlist = {
   title: "Late Night Drive",
-  };
+};
 
 export const testPlaylists = [
   {

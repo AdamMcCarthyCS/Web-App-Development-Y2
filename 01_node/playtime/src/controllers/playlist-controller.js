@@ -36,7 +36,7 @@ export const playlistController = {
 
   deleteTrack: {
     handler: async function (request, h) {
-      const playlist = await db.playlistStore.getPlaylistById(request.params.playlistId);
+      const playlist = await db.playlistStore.getPlaylistById(request.params.playlistid);
       await db.trackStore.deleteTrack(request.params.trackId);
       return h.redirect(`/playlist/${playlist._id}`);
     },
