@@ -20,4 +20,8 @@ export const webRoutes = [
 
   { method: "POST", path: "/dashboard/addplaylist", config: dashboardController.addPlaylist },
   { method: "POST", path: "/playlist/{id}/addtrack", config: playlistController.addTrack },
+
+  // cloudinary
+  { method: "POST", path: "/playlist/{id}/uploadimage", config: playlistController.uploadImage },
+
 ];
