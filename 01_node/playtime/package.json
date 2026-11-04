@@ -27,6 +27,7 @@
           "@hapi/inert": "^7.1.2",
           "@hapi/vision": "^7.0.3",
           "chai": "^6.2.2",
+          "cloudinary": "^2.11.0",
           "dotenv": "^17.4.2",
           "handlebars": "^4.7.9",
           "hapi-auth-jwt2": "^11.0.0",
