@@ -1,0 +1,10 @@
+PORT=3000
+HOST=localhost
+
+cookie_password=some_password_thats_at_least_32_characters_long
+NAME=playtime
+
+db=connection_string_for_mongo_atlas
+cloudinary_name=cloudinary_name 
+cloudinary_key=cloudinary_key
+cloudinary_secret=cloudinary_secret
