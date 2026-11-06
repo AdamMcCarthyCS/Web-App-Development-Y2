@@ -19,7 +19,7 @@ import { validate } from "./api/jwt-utils.js";
 const result = dotenv.config();
 if (result.error) {
   console.log(result.error.message);
-  process.exit(1);
+  // process.exit(1);
 }
 
 const __filename = fileURLToPath(import.meta.url);
@@ -43,7 +43,7 @@ const swaggerOptions = {
 async function init() {
   const server = Hapi.server({
     port: process.env.PORT,
-    host: process.env.HOST,
+    host: "0.0.0.0",
   });
 
   await server.register([
@@ -61,7 +61,7 @@ async function init() {
 
   server.auth.strategy("session", "cookie", {
     cookie: {
-      name: process.env.NAME,
+      name: process.env.name,
       password: process.env.cookie_password,
       isSecure: false,
     },

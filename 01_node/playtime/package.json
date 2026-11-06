@@ -11,6 +11,9 @@
                "src/models/json/**/*.json"
           ]
      },
+     "engines": {
+          "node": ">=20 <24"
+     },
      "scripts": {
           "start": "node src/server.js",
           "dev": "nodemon --exec npm start",
