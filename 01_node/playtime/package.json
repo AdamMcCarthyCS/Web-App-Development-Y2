@@ -11,6 +11,9 @@
                "src/models/json/**/*.json"
           ]
      },
+     "engines": {
+          "node": ">=20 <24"
+     },
      "scripts": {
           "start": "node src/server.js",
           "dev": "nodemon --exec npm start",
@@ -41,7 +44,6 @@
           "uuid": "^14.0.2"
      },
      "devDependencies": {
-          "arkit": "^2.1.0",
           "axios": "^1.20.0",
           "eslint": "^8.57.1",
           "eslint-config-airbnb-base": "^15.0.0",
