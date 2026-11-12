@@ -1,5 +1,9 @@
 <script>
+  let todoText = "";
 
+  function addTodo() {
+    console.log(todoText)
+  }
 </script>
 
 <!--Header-->
@@ -21,10 +25,15 @@
     <div class="field-body">
       <div class="field">
         <p class="control">
-          <input type="text" class="input" id="todo" placeholder="type something...">
+          <input 
+            bind:value={todoText}
+            type="text" 
+            class="input" 
+            id="todo" 
+            placeholder="type something...">
         </p>
       </div>
-      <button class="button">Add todo</button>
+      <button onclick={() => addTodo()} class="button">Add todo</button>
     </div>
   </div>
 </div>
