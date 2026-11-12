@@ -1,8 +1,12 @@
 <script>
+  // svelte-ignore non_reactive_update
   let todoText = "";
+  // @ts-ignore
+  let todoItems = $state([]);
 
   function addTodo() {
     console.log(todoText)
+    todoItems.push(todoText);
   }
 </script>
 
@@ -46,6 +50,12 @@
         <th>Task</th>
       </tr>
     </thead>
-    <tbody></tbody>
+    <tbody>
+      {#each todoItems as todo}
+        <tr>
+          <td>{todo}</td>
+        </tr>
+      {/each}
+    </tbody>
   </table>
  </div>
