@@ -37,3 +37,15 @@
     </div>
   </div>
 </div>
+
+<!-- Table of todos -->
+ <div class="section box">
+  <table class="table is-fullwidth">
+    <thead>
+      <tr>
+        <th>Task</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+ </div>
